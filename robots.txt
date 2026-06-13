@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alojadoanfitriao.com.br/sitemap.xml

@@ -1,0 +1,17 @@
+# URLs limpas — remove extensão .html
+/anfitr-ia            /anfitr-ia.html              200
+/anfitr-ia/limpeza    /anfitr-ia-limpeza.html      200
+/anfitr-ia/atendimento /anfitr-ia-atendimento.html 200
+/anfitr-ia/jornadahospede /anfitr-ia-jornadahospede.html 200
+/mentoria             /mentoria.html               200
+/gestao-otas          /gestao-otas.html            200
+/sobre                /sobre.html                  200
+
+# Redirects de URLs antigas (preservar SEO)
+/ecossistema          /anfitr-ia                   301
+/automacao-limpeza    /anfitr-ia/limpeza           301
+/equipe/ivete         /sobre                       301
+/equipe/alexandre     /sobre                       301
+
+# 404 fallback
+/*                    /index.html                  404
