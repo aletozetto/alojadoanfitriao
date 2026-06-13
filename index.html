@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALoja do Anfitrião | Automação, Mentoria e Gestão para Anfitriões</title>
+  <meta name="description" content="O Sistema ANFITRIÃO™ reúne automação de IA, mentoria estratégica e gestão de OTAs para anfitriões profissionais. Construído por anfitriões, para anfitriões." />
+  <link rel="icon" href="/img/favicon.ico" />
+  <link rel="canonical" href="https://alojadoanfitriao.com.br/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="ALoja do Anfitrião | Automação, Mentoria e Gestão para Anfitriões" />
+  <meta property="og:description" content="Você não contrata um software. Você recebe sua própria Anfitr.IA." />
+  <meta property="og:image" content="https://alojadoanfitriao.com.br/img/og-image.png" />
+  <meta property="og:url" content="https://alojadoanfitriao.com.br/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { navy:'hsl(213,100%,12%)','navy-deep':'hsl(213,100%,4%)',gold:'hsl(45,99%,67%)','gold-ink':'hsl(40,100%,23%)',surface:'hsl(210,20%,98%)','surface-dim':'hsl(210,10%,86%)','surface-container':'hsl(210,14%,93%)' },
+      fontFamily: { headline:['Noto Serif','serif'], body:['Manrope','sans-serif'] },
+      borderRadius: { DEFAULT:'0.125rem' },
+    }}};
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{font-family:'Manrope',sans-serif;background-color:hsl(210,20%,98%);color:hsl(213,100%,12%)}
+    .font-headline{font-family:'Noto Serif',serif}
+    .glass-nav{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .animate-fade-in-up{animation:fadeInUp .8s ease-out forwards}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body class="font-body antialiased">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav bg-navy/90 border-b border-white/10">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 text-white">
+        <img src="/img/aloja-anfitriao-logo.png" alt="ALoja do Anfitrião" class="h-11 w-auto object-contain" />
+        <span class="font-headline text-base md:text-lg tracking-tight hidden sm:block">ALoja do Anfitrião</span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm text-white/80">
+        <a href="/" class="hover:text-gold transition-colors">Início</a>
+        <a href="/anfitr-ia" class="hover:text-gold transition-colors">Anfitr.IA™</a>
+        <a href="/mentoria" class="hover:text-gold transition-colors">Mentoria</a>
+        <a href="/gestao-otas" class="hover:text-gold transition-colors">Gestão de OTAs</a>
+        <a href="/sobre" class="hover:text-gold transition-colors">Sobre</a>
+      </div>
+      <a href="https://wa.me/5512991638478?text=%5BLEAD-HOME%5D%20Conhecer%20o%20Sistema%20ANFITRI%C3%83O" class="bg-gold text-navy text-sm font-semibold px-4 py-2 rounded hover:brightness-95 transition">Fale conosco</a>
+    </nav>
+  </header>
+
+  <main class="pt-16">
+
+    <!-- HERO -->
+    <section class="relative text-white min-h-[88vh] flex items-center">
+      <div class="absolute inset-0 z-0">
+        <img src="/img/alojamento-luxo-temporada-brasil.jpg" alt="Alojamento de temporada de alto padrão à beira-mar no Brasil" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-navy/75"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent"></div>
+      </div>
+      <div class="relative z-10 max-w-5xl mx-auto px-6 py-24 text-center">
+        <img src="/img/aloja-anfitriao-logo.png" alt="ALoja do Anfitrião" class="h-20 w-20 object-contain mx-auto mb-8 animate-fade-in-up" />
+        <h1 class="font-headline text-4xl md:text-6xl leading-[1.12] mb-8 animate-fade-in-up" style="animation-delay:.1s;opacity:0">
+          A operação do seu alojamento.<br class="hidden md:block" />
+          <span class="text-gold">Profissional. Automatizada.</span><br class="hidden md:block" />
+          Sem depender de você o tempo todo.
+        </h1>
+        <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style="animation-delay:.2s;opacity:0">
+          O Sistema ANFITRIÃO™ reúne automação de IA, mentoria estratégica e gestão de OTAs para anfitriões profissionais que querem crescer sem crescer o caos.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay:.3s;opacity:0">
+          <a href="https://wa.me/5512991638478?text=%5BLEAD-HOME%5D%20Conhecer%20o%20Sistema%20ANFITRI%C3%83O" class="inline-flex items-center justify-center gap-2 bg-gold text-navy font-semibold px-7 py-4 rounded hover:brightness-95 transition">Conhecer o Sistema ANFITRIÃO™ <span aria-hidden="true">→</span></a>
+          <a href="/anfitr-ia" class="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-semibold px-7 py-4 rounded hover:bg-white/10 transition">Ver a Anfitr.IA™</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSICIONAMENTO -->
+    <section class="max-w-3xl mx-auto px-6 py-20 md:py-28 text-center">
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-6">Quem somos</p>
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-8 leading-tight">Construído por anfitriões. Para anfitriões.</h2>
+      <div class="space-y-5 text-lg text-navy/75 leading-relaxed">
+        <p>A ALoja do Anfitrião não é uma empresa de tecnologia que descobriu o mercado de temporada. Somos anfitriões que vivemos a operação, sentimos as mesmas dores e construímos o sistema que queríamos ter.</p>
+        <p>Hoje operamos em todo o Brasil — com gestoras de diferentes portes, realidades e plataformas. O que nos une a cada cliente é a mesma coisa: a experiência de quem já esteve do outro lado.</p>
+      </div>
+    </section>
+
+    <!-- TRÊS PILARES -->
+    <section class="bg-surface-container">
+      <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+        <h2 class="font-headline text-3xl md:text-4xl text-navy mb-4 text-center">Três frentes. Um sistema.</h2>
+        <p class="text-center text-navy/60 max-w-xl mx-auto mb-16">Cada pilar resolve uma parte da operação. Juntos, transformam o negócio.</p>
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Anfitr.IA -->
+          <a href="/anfitr-ia" class="group bg-white rounded overflow-hidden border border-surface-dim hover:border-gold transition flex flex-col">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="/img/automacao-ia-hospedagem-temporada.jpg" alt="Automação e inteligência artificial para hospedagem de temporada" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            </div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-2">Anfitr.IA™</p>
+              <h3 class="font-headline text-xl text-navy mb-3">Automação e IA</h3>
+              <p class="text-navy/70 text-sm leading-relaxed flex-1">Atendimento ao hóspede, Jornada do Hóspede e coordenação de limpeza — automatizados com um agente de IA configurado para a sua operação.</p>
+              <span class="text-gold-ink font-semibold text-sm mt-4">Conhecer a Anfitr.IA™ →</span>
+            </div>
+          </a>
+          <!-- Mentoria -->
+          <a href="/mentoria" class="group bg-white rounded overflow-hidden border border-surface-dim hover:border-gold transition flex flex-col">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="/img/consultoria-gestao-alojamentos-temporada.jpg" alt="Consultoria e mentoria estratégica para gestão de alojamentos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            </div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-2">Mentoria</p>
+              <h3 class="font-headline text-xl text-navy mb-3">Estratégia e Gestão</h3>
+              <p class="text-navy/70 text-sm leading-relaxed flex-1">Para o anfitrião que quer profissionalizar a operação, melhorar o posicionamento nas OTAs e crescer com método. Com Ivete Tozetto.</p>
+              <span class="text-gold-ink font-semibold text-sm mt-4">Conhecer a Mentoria →</span>
+            </div>
+          </a>
+          <!-- Gestão OTAs -->
+          <a href="/gestao-otas" class="group bg-white rounded overflow-hidden border border-surface-dim hover:border-gold transition flex flex-col">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="/img/gestao-otas-alojamentos-dashboard.jpg" alt="Gestão de OTAs e administração de alojamentos por resultado" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            </div>
+            <div class="p-7 flex flex-col flex-1">
+              <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-2">Gestão de OTAs</p>
+              <h3 class="font-headline text-xl text-navy mb-3">Administração por Resultado</h3>
+              <p class="text-navy/70 text-sm leading-relaxed flex-1">Gerenciamos sua operação nas principais plataformas — com estratégia de preços, calendário e relacionamento com hóspedes. Você recebe os resultados.</p>
+              <span class="text-gold-ink font-semibold text-sm mt-4">Conhecer a Gestão de OTAs →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROVA SOCIAL -->
+    <section class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-16 text-center">Operando em todo o Brasil.</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-navy text-white rounded p-10">
+          <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-4">DaCali</p>
+          <p class="font-headline text-2xl italic mb-6 leading-snug">"Estou de férias na praia e a operação está funcionando."</p>
+          <p class="text-white/50 text-sm mb-6">— Lu, gestora de operações, DaCali</p>
+          <p class="text-white/70 text-sm leading-relaxed border-t border-white/10 pt-6">Atendimento, Jornada do Hóspede e limpeza automatizados. A gestora gerencia tudo remotamente.</p>
+        </div>
+        <div class="bg-surface-container rounded p-10">
+          <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-4">ZanaLofts7</p>
+          <p class="font-headline text-2xl text-navy mb-6 leading-snug">Mais de 100 unidades atendidas 24h por um agente de identidade própria.</p>
+          <p class="text-navy/60 text-sm leading-relaxed border-t border-surface-dim pt-6">Atendimento via WhatsApp oficial, sem contratação adicional de equipe. Os depoimentos completos estão sendo coletados e entram em breve.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUEM SOMOS -->
+    <section class="bg-navy text-white">
+      <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6">A experiência de quem já operou</p>
+          <h2 class="font-headline text-3xl md:text-4xl mb-8 leading-tight">Antes de construir, nós operamos.</h2>
+          <div class="space-y-5 text-white/75 leading-relaxed">
+            <p>Sabemos o que é um hóspede entrando em uma unidade que não estava pronta. Sabemos o que é o WhatsApp explodindo às 23h. Sabemos o que é depender de grupo de WhatsApp para coordenar limpeza.</p>
+            <p>Foi dessa experiência que nasceu o sistema — e é ela que nos permite implantar com precisão cirúrgica na operação de cada cliente.</p>
+          </div>
+          <a href="/sobre" class="inline-flex items-center gap-2 text-gold font-semibold mt-8 hover:gap-3 transition-all">Conhecer a equipe <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <img src="/img/ivete-tozetto-aloja-anfitriao.jpg" alt="Ivete Tozetto, fundadora e mentora da ALoja do Anfitrião" class="rounded w-full aspect-square object-cover" />
+          <img src="/img/alexandre-tozetto-aloja-anfitriao.jpg" alt="Alexandre Tozetto, co-fundador e diretor de operações e tecnologia" class="rounded w-full aspect-square object-cover mt-8" />
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="bg-surface-container">
+      <div class="max-w-3xl mx-auto px-6 py-24 text-center">
+        <h2 class="font-headline text-3xl md:text-5xl text-navy mb-6 leading-tight">Sua operação no próximo nível.<br class="hidden md:block" /> <span class="text-gold-ink">Começa com uma conversa.</span></h2>
+        <p class="text-navy/70 text-lg mb-10 max-w-xl mx-auto">Sem pitch. Sem tabela de preços. Uma videochamada consultiva para entender sua operação e ver se faz sentido trabalhar juntos.</p>
+        <a href="https://wa.me/5512991638478?text=%5BLEAD-HOME%5D%20Quero%20uma%20conversa%20consultiva" class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition text-lg">Quero uma conversa consultiva <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-deep text-white/60">
+    <div class="max-w-6xl mx-auto px-6 py-14">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="/img/aloja-anfitriao-logo.png" alt="ALoja do Anfitrião" class="h-9 w-auto object-contain" />
+            <span class="font-headline text-lg text-white">ALoja do Anfitrião</span>
+          </div>
+          <p class="text-sm max-w-sm leading-relaxed">Sistema ANFITRIÃO™ — automação, mentoria e gestão de OTAs construídos por anfitriões, para anfitriões.</p>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm mb-4">Anfitr.IA™</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/anfitr-ia/atendimento" class="hover:text-gold transition">Atendimento</a></li>
+            <li><a href="/anfitr-ia/jornadahospede" class="hover:text-gold transition">Jornada do Hóspede</a></li>
+            <li><a href="/anfitr-ia/limpeza" class="hover:text-gold transition">Limpeza e Tarefas</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm mb-4">Empresa</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/mentoria" class="hover:text-gold transition">Mentoria</a></li>
+            <li><a href="/gestao-otas" class="hover:text-gold transition">Gestão de OTAs</a></li>
+            <li><a href="/sobre" class="hover:text-gold transition">Sobre</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 text-xs text-white/40 flex flex-col md:flex-row justify-between gap-2">
+        <p>© 2026 ALoja do Anfitrião · Sistema ANFITRIÃO™</p>
+        <p>São Sebastião · SP · Atendemos todo o Brasil</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

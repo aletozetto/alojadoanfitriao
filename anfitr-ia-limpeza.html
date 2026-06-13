@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo de Limpeza | Anfitr.IA™ — Sistema ANFITRIÃO™</title>
+  <meta name="description" content="Coordene automaticamente sua equipe de limpeza — da reserva confirmada à ordem de serviço no celular da diarista. Sem grupo de WhatsApp, sem ligação." />
+  <link rel="icon" href="/img/favicon.ico" />
+  <link rel="canonical" href="https://alojadoanfitriao.com.br/anfitr-ia/limpeza" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Módulo de Limpeza | Anfitr.IA™ — Sistema ANFITRIÃO™" />
+  <meta property="og:description" content="Sua equipe de limpeza sabe o que fazer. Sem você precisar falar com ninguém." />
+  <meta property="og:image" content="https://alojadoanfitriao.com.br/img/og-image.png" />
+  <meta property="og:url" content="https://alojadoanfitriao.com.br/anfitr-ia/limpeza" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: 'hsl(213, 100%, 12%)',
+            'navy-deep': 'hsl(213, 100%, 4%)',
+            gold: 'hsl(45, 99%, 67%)',
+            'gold-ink': 'hsl(40, 100%, 23%)',
+            surface: 'hsl(210, 20%, 98%)',
+            'surface-dim': 'hsl(210, 10%, 86%)',
+            'surface-container': 'hsl(210, 14%, 93%)',
+          },
+          fontFamily: {
+            headline: ['Noto Serif', 'serif'],
+            body: ['Manrope', 'sans-serif'],
+          },
+          borderRadius: {
+            DEFAULT: '0.125rem',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; background-color: hsl(210, 20%, 98%); color: hsl(213, 100%, 12%); }
+    .font-headline { font-family: 'Noto Serif', serif; }
+    .glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body class="font-body antialiased">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav bg-navy/90 border-b border-white/10">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 text-white">
+        <img src="/img/aloja-anfitriao-logo.png" alt="ALoja do Anfitrião" class="h-11 w-auto object-contain" />
+        <span class="font-headline text-base md:text-lg tracking-tight hidden sm:block">ALoja do Anfitrião</span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm text-white/80">
+        <a href="/" class="hover:text-gold transition-colors">Início</a>
+        <a href="/anfitr-ia" class="hover:text-gold transition-colors">Anfitr.IA™</a>
+        <a href="/mentoria" class="hover:text-gold transition-colors">Mentoria</a>
+        <a href="/gestao-otas" class="hover:text-gold transition-colors">Gestão de OTAs</a>
+        <a href="/sobre" class="hover:text-gold transition-colors">Sobre</a>
+      </div>
+      <a href="https://wa.me/5512991638478?text=%5BLEAD-LIMPEZA%5D%20Quero%20acabar%20com%20o%20caos%20da%20limpeza"
+         class="bg-gold text-navy text-sm font-semibold px-4 py-2 rounded hover:brightness-95 transition">Falar com a gente</a>
+    </nav>
+  </header>
+
+  <main class="pt-16">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="bg-navy text-white">
+      <div class="max-w-5xl mx-auto px-6 py-24 md:py-32">
+        <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6 animate-fade-in-up">Módulo · Limpeza e Tarefas</p>
+        <h1 class="font-headline text-4xl md:text-6xl leading-[1.1] mb-8 animate-fade-in-up" style="animation-delay: 0.1s; opacity: 0;">
+          Sua equipe de limpeza sabe o que fazer.<br class="hidden md:block" />
+          <span class="text-gold">Sem você precisar falar com ninguém.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/70 max-w-2xl mb-10 leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s; opacity: 0;">
+          O módulo de Limpeza e Tarefas do Sistema ANFITRIÃO™ coordena automaticamente sua equipe de campo — da reserva confirmada à ordem de serviço no celular da diarista.
+        </p>
+
+        <!-- Depoimento Lu -->
+        <div class="border-l-2 border-gold pl-6 mb-10 max-w-xl animate-fade-in-up" style="animation-delay: 0.3s; opacity: 0;">
+          <p class="font-headline text-xl md:text-2xl italic text-white/90 mb-2">"Estou de férias na praia e a operação está funcionando."</p>
+          <p class="text-sm text-white/50">— Lu, gestora de operações, DaCali</p>
+        </div>
+
+        <a href="https://wa.me/5512991638478?text=%5BLEAD-LIMPEZA%5D%20Quero%20acabar%20com%20o%20caos%20da%20limpeza"
+           class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-7 py-4 rounded hover:brightness-95 transition animate-fade-in-up" style="animation-delay: 0.4s; opacity: 0;">
+          Quero acabar com o caos da limpeza
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 1 — A DOR ===================== -->
+    <section class="max-w-3xl mx-auto px-6 py-20 md:py-28">
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-8 leading-tight">
+        Check-out às 11h. Check-in às 14h. E você no WhatsApp.
+      </h2>
+      <div class="space-y-5 text-lg text-navy/75 leading-relaxed">
+        <p>Você já viveu isso: reserva confirmada, janela curta de limpeza, e você tendo que confirmar manualmente se a diarista vai a tempo. Grupo de WhatsApp com mensagens não lidas. Limpeza atrasada. Hóspede chegando antes do imóvel estar pronto.</p>
+        <p class="font-semibold text-navy">Não é falha da sua equipe. É falta de sistema.</p>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 2 — COMO FUNCIONA ===================== -->
+    <section class="bg-surface-container">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+        <h2 class="font-headline text-3xl md:text-4xl text-navy mb-16 text-center leading-tight">
+          Da reserva à limpeza — sem você no meio.
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div class="bg-white rounded p-8 border-t-2 border-gold">
+            <span class="font-headline text-5xl text-gold/40 block mb-4">01</span>
+            <h3 class="font-semibold text-lg text-navy mb-3">Reserva confirmada</h3>
+            <p class="text-navy/70 leading-relaxed">Assim que uma reserva entra no sistema, a tarefa de limpeza é gerada automaticamente — com unidade, horário de check-out e responsável.</p>
+          </div>
+          <div class="bg-white rounded p-8 border-t-2 border-gold">
+            <span class="font-headline text-5xl text-gold/40 block mb-4">02</span>
+            <h3 class="font-semibold text-lg text-navy mb-3">Visão da operação</h3>
+            <p class="text-navy/70 leading-relaxed">Você acompanha todas as unidades em um calendário centralizado. Cada tarefa, cada status, cada responsável — em um lugar só.</p>
+          </div>
+          <div class="bg-white rounded p-8 border-t-2 border-gold">
+            <span class="font-headline text-5xl text-gold/40 block mb-4">03</span>
+            <h3 class="font-semibold text-lg text-navy mb-3">A diarista recebe no celular</h3>
+            <p class="text-navy/70 leading-relaxed">No momento certo, sua equipe recebe automaticamente pelo WhatsApp: qual unidade, que horas, o que precisa ser feito. Sem ligação. Sem reenvio manual.</p>
+          </div>
+        </div>
+
+        <!-- Vídeo demonstrativo -->
+        <div class="rounded overflow-hidden aspect-video border border-surface-dim shadow-lg">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/tZXfewz_8OU" title="Sua Operação Rodando Sozinha — Módulo de Limpeza" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 3 — PROVA SOCIAL ===================== -->
+    <section class="max-w-3xl mx-auto px-6 py-20 md:py-28">
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-8 leading-tight">Na prática, com operação real.</h2>
+      <div class="space-y-5 text-lg text-navy/75 leading-relaxed">
+        <p>Quando Victor nos procurou, o maior problema era hóspedes encontrando unidades que não estavam prontas — sem limpeza, sem enxoval, às vezes com o hóspede anterior ainda dentro. Todo gestor de temporada conhece esse prejuízo: não é só financeiro. É avaliação negativa, é reputação, é noite mal dormida.</p>
+        <p>Hoje a operação do DaCali coordena todas as tarefas de limpeza automaticamente. Sem grupo de WhatsApp. Sem ligação para confirmar. Sem erro de comunicação.</p>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 4 — OUTROS MÓDULOS ===================== -->
+    <section class="bg-surface-container">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+        <h2 class="font-headline text-3xl md:text-4xl text-navy mb-12 text-center">A limpeza é o começo.</h2>
+        <p class="text-center text-navy/70 max-w-2xl mx-auto mb-12 text-lg">A operação não para na limpeza. O Sistema ANFITRIÃO™ também automatiza o atendimento ao hóspede e a jornada completa — da reserva ao checkout.</p>
+        <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <a href="/anfitr-ia/atendimento" class="group bg-white rounded p-8 border border-surface-dim hover:border-gold transition">
+            <h3 class="font-headline text-xl text-navy mb-2 group-hover:text-gold-ink transition">Atendimento Anfitr.IA</h3>
+            <p class="text-navy/60 text-sm mb-4">Respostas em segundos, 24h, com os dados reais da reserva.</p>
+            <span class="text-gold-ink font-semibold text-sm">Conhecer →</span>
+          </a>
+          <a href="/anfitr-ia/jornadahospede" class="group bg-white rounded p-8 border border-surface-dim hover:border-gold transition">
+            <h3 class="font-headline text-xl text-navy mb-2 group-hover:text-gold-ink transition">Jornada do Hóspede</h3>
+            <p class="text-navy/60 text-sm mb-4">Da reserva ao checkout, automatizada — sem mensagem manual.</p>
+            <span class="text-gold-ink font-semibold text-sm">Conhecer →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="bg-navy text-white">
+      <div class="max-w-3xl mx-auto px-6 py-24 text-center">
+        <h2 class="font-headline text-3xl md:text-5xl mb-8 leading-tight">
+          Sua equipe de limpeza. Coordenada.<br class="hidden md:block" />
+          <span class="text-gold">Sem você no WhatsApp.</span>
+        </h2>
+        <a href="https://wa.me/5512991638478?text=%5BLEAD-LIMPEZA%5D%20Quero%20automatizar%20minha%20limpeza"
+           class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition text-lg">
+          Quero automatizar minha limpeza
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-navy-deep text-white/60">
+    <div class="max-w-6xl mx-auto px-6 py-14">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+        <div class="md:col-span-2">
+          <span class="font-headline text-lg text-white"><span class="text-gold">A</span>Loja do Anfitrião</span>
+          <p class="text-sm mt-3 max-w-sm leading-relaxed">Sistema ANFITRIÃO™ — automação, mentoria e gestão de OTAs construídos por anfitriões, para anfitriões.</p>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm mb-4">Anfitr.IA™</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/anfitr-ia/atendimento" class="hover:text-gold transition">Atendimento</a></li>
+            <li><a href="/anfitr-ia/jornadahospede" class="hover:text-gold transition">Jornada do Hóspede</a></li>
+            <li><a href="/anfitr-ia/limpeza" class="hover:text-gold transition">Limpeza e Tarefas</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm mb-4">Empresa</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/mentoria" class="hover:text-gold transition">Mentoria</a></li>
+            <li><a href="/gestao-otas" class="hover:text-gold transition">Gestão de OTAs</a></li>
+            <li><a href="/sobre" class="hover:text-gold transition">Sobre</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 text-xs text-white/40 flex flex-col md:flex-row justify-between gap-2">
+        <p>© 2026 ALoja do Anfitrião · Sistema ANFITRIÃO™</p>
+        <p>São Sebastião · SP · Atendemos todo o Brasil</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
