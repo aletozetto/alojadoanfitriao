@@ -8,6 +8,14 @@
 /presenca             /presenca.html               200
 /sobre                /sobre.html                  200
 
+/recursos              /recursos.html                                       200
+/recursos/reservas-madrugada                  /recursos/reservas-madrugada.html                  200
+/recursos/atendimento-automatico-vs-robo-chato /recursos/atendimento-automatico-vs-robo-chato.html 200
+/recursos/como-parar-de-depender-das-otas     /recursos/como-parar-de-depender-das-otas.html     200
+/recursos/erro-google-meu-negocio             /recursos/erro-google-meu-negocio.html             200
+/recursos/quando-integrar-um-pms              /recursos/quando-integrar-um-pms.html              200
+/recursos/como-precificar-suas-diarias        /recursos/como-precificar-suas-diarias.html        200
+/recursos/airbnb-ou-booking                   /recursos/airbnb-ou-booking.html                   200
 # Redirects de URLs antigas (preservar SEO)
 /vitrine              /presenca                    301
 /ecossistema          /anfitr-ia                   301
