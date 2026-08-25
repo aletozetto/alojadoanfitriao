@@ -22,10 +22,10 @@
             padding: 40px 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             background: var(--card-bg);
-            padding: 40px;
+            padding: 45px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
@@ -33,28 +33,38 @@
         h1 {
             color: var(--primary-color);
             border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             font-size: 28px;
             margin-top: 0;
         }
         h2 {
             color: var(--primary-color);
-            font-size: 20px;
-            margin-top: 30px;
+            font-size: 19px;
+            margin-top: 28px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
         }
         p, li {
             font-size: 15px;
-            color: #555555;
+            color: #444444;
         }
         ul {
             padding-left: 20px;
+        }
+        .company-badge {
+            background-color: #f1f3f5;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            font-size: 14px;
         }
         .footer-info {
             margin-top: 40px;
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
             font-size: 13px;
-            color: #777777;
+            color: #666666;
+            line-height: 1.8;
         }
     </style>
 </head>
@@ -62,41 +72,67 @@
 
 <div class="container">
     <h1>Política de Privacidade</h1>
-    <p>Última atualização: August 2026</p>
+    
+    <div class="company-badge">
+        <strong>Controlador dos Dados:</strong> ALOJA DO ANFITRIAO SOLUCOES EM HOSPITALIDADE E TURISMO LTDA<br>
+        <strong>CNPJ:</strong> 66.215.844/0001-68<br>
+        <strong>Domínio Oficial:</strong> <code>alojadoanfitriao.com.br</code>
+    </div>
 
-    <p>A <strong>ALOJA DO ANFITRIAO SOLUCOES EM HOSPITALIDADE E TURISMO LTDA</strong> ("a Loja do Anfitrião"), inscrita sob o CNPJ correspondente e operando o domínio <code>alojadoanfitriao.com.br</code>, está comprometida com a proteção da privacidade e dos dados pessoais de seus usuários e clientes, em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018) e as diretrizes da plataforma Meta.</p>
+    <p>A <strong>ALOJA DO ANFITRIAO SOLUCOES EM HOSPITALIDADE E TURISMO LTDA</strong> ("a Loja do Anfitrião") está totalmente comprometida com a privacidade, proteção de dados e transparência no tratamento das informações pessoais de seus clientes, parceiros e usuários. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos seus dados pessoais em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018) e com as Políticas da Plataforma Meta (Meta for Developers / WhatsApp Business API).</p>
 
-    <h2>1. Coleta e Uso de Informações</h2>
-    <p>Para a prestação de serviços de automação, gestão de reservas e integração de atendimento via WhatsApp Business API, coletamos apenas as informações necessárias para a operação da plataforma, incluindo:</p>
+    <h2>1. Informações Coletadas</h2>
+    <p>Para a prestação de serviços de automação de atendimento, gestão de reservas, integração via WhatsApp Business API e soluções em tecnologia para hospitalidade, coletamos as seguintes categorias de dados:</p>
     <ul>
-        <li>Informações de contato (nome, e-mail e número de telefone);</li>
-        <li>Identificadores de conta de mensagens (IDs do WhatsApp Business, logs de envio e recebimento de mensagens);</li>
-        <li>Dados técnicos de integração autorizados expressamente pelo cliente via Embedded Signup do Facebook/Meta.</li>
+        <li><strong>Dados de Identificação e Contato:</strong> Nome completo, e-mail, número de telefone e cargo/função comercial.</li>
+        <li><strong>Dados da Conta Empresarial:</strong> Identificadores de Conta do WhatsApp Business (WABA IDs), IDs de Portfólio Empresarial Meta e permissões de acesso concedidas via Embedded Signup.</li>
+        <li><strong>Dados de Comunicação e Registros de Mensagens:</strong> Histórico de envio e recebimento de mensagens, logs de entrega, modelos de mensagens (templates) e dados necessários para execução de agentes automatizados.</li>
     </ul>
 
     <h2>2. Finalidade do Tratamento de Dados</h2>
-    <p>Os dados coletados são utilizados exclusivamente para:</p>
+    <p>Os dados coletados são tratados estritamente para as seguintes finalidades:</p>
     <ul>
-        <li>Viabilizar a integração e operação das APIs de comunicação da Meta;</li>
-        <li>Permitir o gerenciamento automatizado de atendimento e respostas a hóspedes/clientes;</li>
-        <li>Garantir a segurança da plataforma e o cumprimento de obrigações legais.</li>
+        <li>Viabilizar a integração técnica entre os sistemas do cliente e a infraestrutura da Meta Platforms Inc. via API oficial do WhatsApp.</li>
+        <li>Permitir o gerenciamento automatizado de respostas, confirmações de reservas e atendimento ao cliente final.</li>
+        <li>Garantir a segurança, auditoria técnica e prevenção contra fraudes na plataforma.</li>
+        <li>Cumprir obrigações legais, regulatórias e fiscais aplicáveis.</li>
     </ul>
 
-    <h2>3. Compartilhamento de Dados</h2>
-    <p>Não vendemos, alugamos ou compartilhamos dados pessoais com terceiros para fins comerciais. Os dados são processados através da infraestrutura técnica da Meta Platforms Inc. estritamente para o funcionamento das ferramentas de mensageria contratadas.</p>
+    <h2>3. Compartilhamento de Dados com Terceiros</h2>
+    <p><strong>Não vendemos, alugamos ou comercializamos dados pessoais de usuários em nenhuma hipótese.</strong> O compartilhamento de dados ocorre exclusivamente nos seguintes cenários:</p>
+    <ul>
+        <li><strong>Meta Platforms Inc.:</strong> Para o processamento e trafegabilidade das mensagens enviadas através do serviço oficial da WhatsApp Business API.</li>
+        <li><strong>Provedores de Infraestrutura:</strong> Servidores de hospedagem e nuvem estritamente contratados para o funcionamento seguro da aplicação.</li>
+        <li><strong>Requisição Legal:</strong> Por determinação judicial ou solicitação de autoridades competentes nos termos da legislação brasileira.</li>
+    </ul>
 
-    <h2>4. Armazenamento e Segurança</h2>
-    <p>Adotamos medidas técnicas e administrativas rigorosas para proteger os dados contra acessos não autorizados, perdas ou alterações. Os dados são mantidos apenas pelo período necessário para o cumprimento das finalidades descritas.</p>
+    <h2>4. Armazenamento, Segurança e Retenção</h2>
+    <p>Adotamos medidas de segurança técnicas e organizacionais adequadas (incluindo criptografia em trânsito, controle rigoroso de acesso e armazenamento em servidores seguros) para proteger os dados pessoais contra acessos não autorizados, perda, destruição ou alteração.</p>
+    <p>Os dados são mantidos apenas pelo tempo estritamente necessário para cumprir as finalidades descritas nesta política ou conforme exigido por obrigações legais e regulatórias.</p>
 
-    <h2>5. Direitos do Titular dos Dados</h2>
-    <p>Conforme previsto na LGPD, o usuário tem direito de solicitar a confirmação da existência de tratamento, o acesso aos seus dados, a correção de dados incompletos ou a exclusão definitiva de seus registros de nossa base de dados.</p>
+    <h2>5. Direitos do Titular dos Dados (LGPD)</h2>
+    <p>Nos termos do artigo 18 da LGPD, os titulares dos dados têm o direito de, a qualquer momento e mediante requisição gratuita:</p>
+    <ul>
+        <li>Confirmar a existência de tratamento de seus dados.</li>
+        <li>Acessar e corrigir dados incompletos, inexatos ou desatualizados.</li>
+        <li>Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos.</li>
+        <li>Revogar o consentimento e solicitar a exclusão definitiva dos registros de nossas bases de dados.</li>
+    </ul>
 
-    <h2>6. Contato do Encarregado de Dados (DPO)</h2>
-    <p>Para exercer seus direitos ou esclarecer dúvidas sobre esta Política de Privacidade, entre em contato através do e-mail: <code>contato@alojadoanfitriao.com.br</code>.</p>
+    <h2>6. Exclusão de Dados do Usuário</h2>
+    <p>Caso deseje revogar as permissões concedidas ou solicitar a exclusão de seus dados de nossa plataforma, você pode enviar um e-mail direto para nosso Encarregado de Proteção de Dados (DPO) através do endereço indicado abaixo. Sua solicitação será atendida no prazo legal.</p>
+
+    <h2>7. Contato do Encarregado (DPO)</h2>
+    <p>Para dúvidas, solicitações ou exercício de direitos relacionados à privacidade e proteção de dados, entre em contato através de nosso canal dedicado:</p>
+    <ul>
+        <li><strong>E-mail:</strong> <code>contato@alojadoanfitriao.com.br</code></li>
+    </ul>
 
     <div class="footer-info">
         <strong>ALOJA DO ANFITRIAO SOLUCOES EM HOSPITALIDADE E TURISMO LTDA</strong><br>
-        Porto Alegre - RS | Brasil
+        AV CRISTOVAO COLOMBO, 2144, SALA 408 ANDAR 3, FLORESTA<br>
+        Porto Alegre - RS | CEP 90.560-001<br>
+        Telefone de Contato: (12) 9163-8478
     </div>
 </div>
 
