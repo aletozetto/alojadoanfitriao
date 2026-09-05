@@ -31,6 +31,8 @@
     .glass-nav{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
     .animate-fade-in-up{animation:fadeInUp .8s ease-out forwards}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .animate-spin{animation:spin 1s linear infinite}
     @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
   </style>
   <!-- Google tag (gtag.js) -->
@@ -171,6 +173,66 @@
       </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════════════
+         EMBEDDED SIGNUP — Conectar via WhatsApp Business
+         Pré-requisito antes de subir: preencher META_CONFIG_ID
+         no bloco <script> no final do arquivo.
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="conectar" class="max-w-3xl mx-auto px-6 py-20 md:py-28 text-center">
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-6">WhatsApp Oficial · Meta Cloud API</p>
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-6 leading-tight">Conecte seu WhatsApp em minutos.</h2>
+      <p class="text-navy/70 text-lg mb-10 leading-relaxed max-w-xl mx-auto">Autorize uma vez. Seu número fica conectado à infraestrutura oficial da Meta — sem perder o acesso pelo celular.</p>
+
+      <!-- Estado: aguardando clique -->
+      <div id="signup-idle">
+        <button
+          onclick="launchEmbeddedSignup()"
+          class="inline-flex items-center gap-3 bg-navy text-white font-semibold px-8 py-4 rounded hover:brightness-110 transition text-base cursor-pointer"
+        >
+          <!-- Ícone WhatsApp -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+          </svg>
+          Conectar via WhatsApp Business
+        </button>
+      </div>
+
+      <!-- Estado: processando -->
+      <div id="signup-loading" class="hidden">
+        <div class="inline-flex items-center gap-3 text-navy/60 text-base">
+          <svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" stroke-opacity=".2"/>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+          </svg>
+          Processando autorização…
+        </div>
+      </div>
+
+      <!-- Estado: sucesso -->
+      <div id="signup-success" class="hidden">
+        <div class="inline-flex items-center gap-3 text-green-700 font-semibold text-base bg-green-50 px-6 py-4 rounded border border-green-200">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Número conectado com sucesso!
+        </div>
+        <p class="text-navy/50 text-sm mt-4">Você receberá uma confirmação em breve.</p>
+      </div>
+
+      <!-- Estado: erro -->
+      <div id="signup-error" class="hidden">
+        <div class="inline-flex items-center gap-3 text-red-700 font-semibold text-base bg-red-50 px-6 py-4 rounded border border-red-200">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="signup-error-msg">Algo deu errado. Tente novamente.</span>
+        </div>
+        <button onclick="resetSignup()" class="text-navy/60 text-sm mt-4 underline hover:text-navy transition">Tentar novamente</button>
+      </div>
+
+      <p class="text-navy/40 text-xs mt-10">
+        Seus dados são processados pela infraestrutura oficial da Meta. 
+        <a href="/politica-de-privacidade.html" class="underline hover:text-navy/60 transition">Política de privacidade</a>
+      </p>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
     <section class="bg-navy text-white">
       <div class="max-w-3xl mx-auto px-6 py-24 text-center">
         <h2 class="font-headline text-3xl md:text-5xl mb-6 leading-tight">Sua operação rodando. <span class="text-gold">Você no controle.</span></h2>
@@ -215,25 +277,88 @@
           <p>São Sebastião · SP · Atendemos todo o Brasil</p>
         </div>
         <div class="flex items-center gap-5">
-            <a href="https://share.google/7Wy6IX37S20AuocW4" target="_blank" rel="noopener" aria-label="Google Meu Negócio" class="text-white/40 hover:text-gold transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8h9.16c.09.5.14 1.02.14 1.56C21.3 17.52 17.4 21 12 21A9 9 0 1 1 12 3c2.44 0 4.62.92 6.28 2.44l-2.57 2.5A5.5 5.5 0 0 0 12 6.5a5.5 5.5 0 1 0 3.88 9.45H12v-5.15z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/alojadoanfitriao" target="_blank" rel="noopener" aria-label="Instagram" class="text-white/40 hover:text-gold transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <a href="https://www.facebook.com/alojadoanfitriao" target="_blank" rel="noopener" aria-label="Facebook" class="text-white/40 hover:text-gold transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/in/aletozetto/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-white/40 hover:text-gold transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
-            <a href="https://www.youtube.com/@alojadoanfitriao" target="_blank" rel="noopener" aria-label="YouTube" class="text-white/40 hover:text-gold transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
-            </a>
-          </div>
+          <a href="https://share.google/7Wy6IX37S20AuocW4" target="_blank" rel="noopener" aria-label="Google Meu Negócio" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8h9.16c.09.5.14 1.02.14 1.56C21.3 17.52 17.4 21 12 21A9 9 0 1 1 12 3c2.44 0 4.62.92 6.28 2.44l-2.57 2.5A5.5 5.5 0 0 0 12 6.5a5.5 5.5 0 1 0 3.88 9.45H12v-5.15z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/alojadoanfitriao" target="_blank" rel="noopener" aria-label="Instagram" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/alojadoanfitriao" target="_blank" rel="noopener" aria-label="Facebook" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/aletozetto/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@alojadoanfitriao" target="_blank" rel="noopener" aria-label="YouTube" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       EMBEDDED SIGNUP — Configuração
+       Antes de subir, preencher:
+         META_CONFIG_ID → criar em: Meta for Developers → App →
+                          WhatsApp → Embedded Signup → Create Configuration
+         N8N_WEBHOOK    → path do webhook no n8n (criar workflow primeiro)
+  ═══════════════════════════════════════════════════════════════ -->
+  <script>
+    const FB_APP_ID      = '1240247687577839';
+    const FB_VERSION     = 'v21.0';
+    const META_CONFIG_ID = '1573771401067220';
+    const N8N_WEBHOOK    = 'https://n8n.alojadoanfitriao.cloud/webhook/embedded-signup';
+
+    window.fbAsyncInit = function () {
+      FB.init({ appId: FB_APP_ID, autoLogAppEvents: true, xfbml: false, version: FB_VERSION });
+    };
+
+    function setSignupState(state, msg) {
+      ['idle', 'loading', 'success', 'error'].forEach(function (s) {
+        document.getElementById('signup-' + s).classList.add('hidden');
+      });
+      document.getElementById('signup-' + state).classList.remove('hidden');
+      if (msg) document.getElementById('signup-error-msg').textContent = msg;
+    }
+
+    function resetSignup() { setSignupState('idle'); }
+
+    function launchEmbeddedSignup() {
+      setSignupState('loading');
+      FB.login(function (response) {
+        if (response.authResponse && response.authResponse.code) {
+          sendCode(response.authResponse.code);
+        } else {
+          var reason = response.status === 'not_authorized'
+            ? 'Autorização negada. Tente novamente.'
+            : 'Janela fechada antes de concluir.';
+          setSignupState('error', reason);
+        }
+      }, {
+        config_id: META_CONFIG_ID,
+        response_type: 'code',
+        override_default_response_type: true,
+        extras: { setup: {}, featuretype: '', sessioninfoversion: 2 }
+      });
+    }
+
+    function sendCode(code) {
+      fetch(N8N_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: code, source: 'anfitr-ia' })
+      })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        setSignupState('success');
+      })
+      .catch(function (err) {
+        setSignupState('error', 'Erro ao processar autorização (' + err.message + ').');
+      });
+    }
+  </script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js"></script>
 
 </body>
 </html>
