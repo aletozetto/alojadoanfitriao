@@ -307,7 +307,7 @@
   <script>
     const FB_APP_ID      = '1240247687577839';
     const FB_VERSION     = 'v21.0';
-    const META_CONFIG_ID = '1573771401067220';
+    const META_CONFIG_ID = '__META_CONFIG_ID__';
     const N8N_WEBHOOK    = 'https://n8n.alojadoanfitriao.cloud/webhook/embedded-signup';
 
     window.fbAsyncInit = function () {
@@ -339,7 +339,11 @@
         config_id: META_CONFIG_ID,
         response_type: 'code',
         override_default_response_type: true,
-        extras: { setup: {}, featuretype: '', sessioninfoversion: 2 }
+        extras: {
+          setup: {},
+          featureType: 'whatsapp_business_app_onboarding',
+          sessionInfoVersion: '3'
+        }
       });
     }
 
