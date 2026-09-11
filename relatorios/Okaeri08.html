@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Okaeri Home — Relatório de Presença Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #CD0737;
+    --primary-dark: #930320;
+    --secondary: #F85F44;
+    --tertiary: #F9A38E;
+    --bg: #FBF9F8;
+    --surface: #F6F3F2;
+    --text: #1B1C1C;
+    --text-light: #5C3F40;
+    --dark: #1B1216;
+    --outline: #E5BDBD;
+    --gradient: linear-gradient(135deg, #930320, #F76445);
+    --green: #2E7D32;
+    --green-bg: #E8F5E9;
+    --amber: #B26A00;
+    --amber-bg: #FFF4E0;
+    --blue: #1B5E9E;
+    --blue-bg: #E6F0FA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 28px; }
+
+  /* HERO */
+  .hero { background: var(--dark); color: #fff; padding: 76px 0 60px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: -45%; right: -18%;
+    width: 640px; height: 640px; background: var(--gradient);
+    border-radius: 50%; opacity: 0.18; filter: blur(50px);
+  }
+  .hero-inner { position: relative; z-index: 2; }
+  .hero-brand { font-size: 12px; letter-spacing: 1.5px; color: rgba(255,255,255,0.45); margin-bottom: 26px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-weight: 600;
+    font-size: clamp(30px, 5vw, 44px); line-height: 1.15;
+    max-width: 620px; margin-bottom: 16px;
+  }
+  .hero p.sub { font-size: 16px; color: rgba(255,255,255,0.62); max-width: 520px; }
+  .hero-stats { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 38px; }
+  .hstat {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 18px 22px; min-width: 150px; flex: 1;
+  }
+  .hstat .num {
+    font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 600;
+    background: linear-gradient(135deg, #fff, #F9A38E);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    display: block; line-height: 1.1;
+  }
+  .hstat .lbl { font-size: 12px; color: rgba(255,255,255,0.62); margin-top: 4px; display: block; }
+
+  /* INDEX */
+  .toc { background: var(--surface); border-bottom: 1px solid var(--outline); padding: 22px 0; }
+  .toc-inner { display: flex; gap: 8px; flex-wrap: wrap; }
+  .toc a {
+    font-size: 12.5px; text-decoration: none; color: var(--text-light);
+    background: #fff; border: 1px solid var(--outline); border-radius: 20px;
+    padding: 7px 15px; transition: all .15s;
+  }
+  .toc a:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  /* SECTIONS */
+  section { padding: 56px 0; border-bottom: 1px solid var(--outline); }
+  section:last-of-type { border-bottom: none; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--primary); font-weight: 600; margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-weight: 600;
+    font-size: 27px; margin-bottom: 10px; line-height: 1.25;
+  }
+  .section-lead { font-size: 15px; color: var(--text-light); max-width: 600px; margin-bottom: 30px; }
+
+  /* PILLARS */
+  .pillar { display: flex; gap: 18px; padding: 22px 0; border-top: 1px solid var(--outline); }
+  .pillar:first-of-type { border-top: none; padding-top: 4px; }
+  .pmark {
+    flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700;
+  }
+  .pmark.ok { background: var(--green-bg); color: var(--green); }
+  .pmark.wait { background: var(--amber-bg); color: var(--amber); }
+  .pmark.info { background: var(--blue-bg); color: var(--blue); }
+  .pbody h3 { font-size: 16.5px; font-weight: 600; margin-bottom: 5px; }
+  .pbody p { font-size: 14px; color: var(--text-light); max-width: 550px; }
+  .pbody .detail {
+    font-size: 12.5px; color: var(--primary); margin-top: 7px; font-weight: 500;
+  }
+
+  /* PANEL */
+  .panel {
+    background: var(--surface); border: 1px solid var(--outline);
+    border-radius: 16px; padding: 28px; margin-top: 12px;
+  }
+  .panel-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+  }
+  .panel-head h3 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11.5px; font-weight: 600; padding: 6px 13px; border-radius: 20px;
+  }
+  .badge.green { background: var(--green-bg); color: var(--green); }
+  .badge.amber { background: var(--amber-bg); color: var(--amber); }
+
+  .chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px,1fr)); gap: 9px; }
+  .chip {
+    background: #fff; border: 1px solid var(--outline);
+    border-radius: 10px; padding: 11px 13px; font-size: 12.5px;
+  }
+  .chip .n { font-weight: 600; display: block; margin-bottom: 1px; }
+  .chip .s { color: var(--green); font-size: 11.5px; }
+
+  /* GRADIENT BOX */
+  .gbox { background: var(--gradient); border-radius: 16px; padding: 30px; color: #fff; margin-top: 10px; }
+  .gbox h3 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 600; margin-bottom: 9px; }
+  .gbox p { font-size: 14px; color: rgba(255,255,255,0.9); max-width: 550px; }
+  .gbox ul { margin: 14px 0 0 0; padding-left: 18px; }
+  .gbox li { font-size: 13.5px; color: rgba(255,255,255,0.88); margin-bottom: 5px; }
+  .gbox .note { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 14px; }
+
+  /* ALERT BOX */
+  .alert {
+    border-left: 4px solid var(--amber); background: var(--amber-bg);
+    border-radius: 0 12px 12px 0; padding: 20px 22px; margin: 18px 0;
+  }
+  .alert h4 { font-size: 15px; font-weight: 600; color: #7A4A00; margin-bottom: 6px; }
+  .alert p { font-size: 13.5px; color: #7A4A00; }
+
+  /* FLOW */
+  .flow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+  .fstep {
+    background: #fff; border: 1px solid var(--outline); border-radius: 10px;
+    padding: 12px 16px; font-size: 13px; flex: 1; min-width: 130px; text-align: center;
+  }
+  .fstep.bad { border-color: var(--amber); background: var(--amber-bg); color: #7A4A00; font-weight: 600; }
+  .fstep.good { border-color: var(--green); background: var(--green-bg); color: var(--green); font-weight: 600; }
+  .farrow { color: var(--text-light); font-size: 18px; }
+
+  /* OPTIONS */
+  .opt {
+    border: 1px solid var(--outline); border-radius: 12px;
+    padding: 20px 22px; margin-bottom: 12px; background: #fff;
+  }
+  .opt-tag {
+    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .5px;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 12px; margin-bottom: 9px;
+  }
+  .opt-tag.a { background: var(--blue-bg); color: var(--blue); }
+  .opt-tag.b { background: var(--green-bg); color: var(--green); }
+  .opt h4 { font-size: 15.5px; font-weight: 600; margin-bottom: 6px; }
+  .opt p { font-size: 13.5px; color: var(--text-light); }
+  .opt .meta { font-size: 12.5px; color: var(--text-light); margin-top: 9px; font-style: italic; }
+
+  /* DECISION */
+  .dec {
+    border: 1px solid var(--outline); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 11px;
+  }
+  .dec h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .dec p { font-size: 13.5px; color: var(--text-light); }
+  .dec .ask { font-size: 13px; color: var(--primary); font-weight: 500; margin-top: 7px; }
+
+  /* TABLE */
+  .tbl { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13.5px; }
+  .tbl th {
+    text-align: left; font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-light); font-weight: 600; padding: 0 10px 10px 0; border-bottom: 1px solid var(--outline);
+  }
+  .tbl td { padding: 11px 10px 11px 0; border-bottom: 1px solid var(--outline); vertical-align: top; }
+  .tbl td:first-child { font-weight: 500; }
+  .st { font-size: 11.5px; font-weight: 600; padding: 3px 10px; border-radius: 12px; white-space: nowrap; }
+  .st.ok { background: var(--green-bg); color: var(--green); }
+  .st.wait { background: var(--amber-bg); color: var(--amber); }
+
+  footer { padding: 44px 0 64px; text-align: center; }
+  footer .brand { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--primary); margin-bottom: 5px; }
+  footer p { font-size: 12.5px; color: var(--text-light); }
+
+  @media (max-width: 560px) {
+    .hero { padding: 56px 0 44px; }
+    section { padding: 40px 0; }
+    .hero-stats { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-brand">OKAERI HOME APARTMENTS · RELATÓRIO DE PRESENÇA DIGITAL · SETEMBRO 2026</div>
+    <h1>O site agora fala a língua do Google — e descobrimos um problema no caminho.</h1>
+    <p class="sub">Este relatório cobre tudo que foi construído nas últimas semanas, o que já está no ar funcionando, e duas frentes que precisam de uma decisão sua.</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="num">7/7</span><span class="lbl">unidades validadas para Aluguel por Temporada no Google</span></div>
+      <div class="hstat"><span class="num">32</span><span class="lbl">páginas indexadas, zero erro crítico</span></div>
+      <div class="hstat"><span class="num">3</span><span class="lbl">ações de conversão sendo medidas</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="toc">
+  <div class="wrap toc-inner">
+    <a href="#base">Fundação técnica</a>
+    <a href="#vr">Aluguel por Temporada</a>
+    <a href="#dados">Dados e conversão</a>
+    <a href="#email">Alerta: e-mails</a>
+    <a href="#gvr">Google Vacation Rentals</a>
+    <a href="#decisoes">Decisões pendentes</a>
+    <a href="#status">Status geral</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="base">
+    <div class="eyebrow">Parte 1</div>
+    <div class="section-title">A fundação: fazer o Google enxergar o site</div>
+    <p class="section-lead">Um site pode estar bonito e ainda ser invisível. Antes deste trabalho, o okaerihome.com não tinha mapa do site, não estava registrado no Google Search Console, tinha páginas quebradas indexadas e formulários que não enviavam nada. Tudo isso foi resolvido.</p>
+
+    <div class="pillar">
+      <div class="pmark ok">✓</div>
+      <div class="pbody">
+        <h3>Mapa do site e registro no Google</h3>
+        <p>Criamos e enviamos o sitemap com todas as páginas relevantes, e verificamos a propriedade do domínio no Google Search Console — a ferramenta oficial que mostra como o Google enxerga o site.</p>
+        <div class="detail">32 páginas processadas · propriedade verificada por domínio (cobre www e sem www)</div>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pmark ok">✓</div>
+      <div class="pbody">
+        <h3>Páginas quebradas corrigidas</h3>
+        <p>O Google tinha 13 endereços antigos indexados que davam erro. Nove eram artigos com endereço incompleto, quatro eram sobras do site antigo hospedado no OwnerRez. Todos agora redirecionam para o conteúdo certo.</p>
+        <div class="detail">13 redirecionamentos criados e testados</div>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pmark ok">✓</div>
+      <div class="pbody">
+        <h3>Organização das páginas de política</h3>
+        <p>Havia duas páginas de política com conteúdo idêntico competindo entre si, e links quebrados no menu e no rodapé de dezenas de páginas. Reorganizamos tudo: um único hub de políticas, acessível pelo menu e pelo rodapé de todas as páginas.</p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pmark ok">✓</div>
+      <div class="pbody">
+        <h3>Formulários que realmente chegam a alguém</h3>
+        <p>Os formulários de contato e de proprietários eram apenas visuais — o botão não enviava nada. Agora processam de verdade, com confirmação na tela para quem preenche e e-mail direto para a equipe, com registro de segurança caso algo falhe.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="vr">
+    <div class="eyebrow">Parte 2</div>
+    <div class="section-title">Elegibilidade para Aluguel por Temporada</div>
+    <p class="section-lead">Este é o ponto mais valioso do trabalho. O Google tem uma categoria específica para hospedagem de temporada, com exigências rigorosas de dados: localização exata por coordenada, capacidade, quartos, banheiros, política de pets, avaliações e no mínimo oito fotos por unidade. As sete unidades da Okaeri passaram nessa validação.</p>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3>Aluguel por temporada</h3>
+        <span class="badge green">✓ Válido no teste oficial do Google</span>
+      </div>
+      <div class="chips">
+        <div class="chip"><span class="n">River One 3405</span><span class="s">✓ Validado</span></div>
+        <div class="chip"><span class="n">River One 2503</span><span class="s">✓ Validado</span></div>
+        <div class="chip"><span class="n">River One 2307</span><span class="s">✓ Validado</span></div>
+        <div class="chip"><span class="n">Setin 1917</span><span class="s">✓ Validado</span></div>
+        <div class="chip"><span class="n">Helbor 309</span><span class="s">✓ Validado</span></div>
+        <div class="chip"><span class="n">Homelike 83</span><span class="s">✓ Validado</span></div>
+        <div class="chip"><span class="n">Homelike 164</span><span class="s">✓ Validado</span></div>
+      </div>
+    </div>
+
+    <div class="pillar" style="margin-top:26px">
+      <div class="pmark ok">✓</div>
+      <div class="pbody">
+        <h3>Localização corrigida no mapa</h3>
+        <p>Duas unidades tinham o mapa buscando pelo texto do endereço em vez da coordenada exata — o que pode colocar o pino no lugar errado. Todas as sete agora usam a coordenada verificada do prédio.</p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pmark ok">✓</div>
+      <div class="pbody">
+        <h3>Artigos com marcação de conteúdo</h3>
+        <p>Os dez artigos do portal também receberam marcação estruturada, o que ajuda o Google a entendê-los como conteúdo editorial de autoridade — e não apenas como páginas soltas.</p>
+        <div class="detail">10 artigos validados · corrigido um erro que gerava endereços quebrados</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dados">
+    <div class="eyebrow">Parte 3</div>
+    <div class="section-title">Agora sabemos o que acontece no site</div>
+    <p class="section-lead">Antes, não havia nenhuma medição. Hoje, três ações que geram negócio real são capturadas automaticamente — e todas foram testadas ao vivo, com dado chegando de verdade.</p>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3>Ações medidas</h3>
+        <span class="badge green">✓ Três confirmadas em teste real</span>
+      </div>
+      <table class="tbl">
+        <tr>
+          <th>Ação do visitante</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>Clique no WhatsApp<br><span style="color:var(--text-light);font-size:12.5px;font-weight:400">Botão flutuante e "Tirar dúvidas"</span></td>
+          <td><span class="st ok">Confirmado</span></td>
+        </tr>
+        <tr>
+          <td>Envio de formulário<br><span style="color:var(--text-light);font-size:12.5px;font-weight:400">Contato e Proprietários</span></td>
+          <td><span class="st ok">Confirmado</span></td>
+        </tr>
+        <tr>
+          <td>Início de reserva<br><span style="color:var(--text-light);font-size:12.5px;font-weight:400">Widget "Reserve agora"</span></td>
+          <td><span class="st ok">Confirmado</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pillar" style="margin-top:26px">
+      <div class="pmark ok">✓</div>
+      <div class="pbody">
+        <h3>OwnerRez conectado direto ao Analytics</h3>
+        <p>Descobrimos que o OwnerRez tem integração nativa com o Google Analytics. Ativamos, e agora o próprio sistema de reservas envia os eventos automaticamente — cotação exibida, reserva iniciada, checkout começado. Sem código, sem gambiarra.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="email">
+    <div class="eyebrow">Parte 4 · Atenção</div>
+    <div class="section-title">Encontramos um problema sério nos e-mails</div>
+    <p class="section-lead">Durante o teste dos formulários, descobrimos algo que vai além do site: mensagens enviadas para o endereço da Okaeri estavam sendo entregues em uma caixa que ninguém acessa.</p>
+
+    <div class="alert">
+      <h4>O que está acontecendo</h4>
+      <p>Existem <strong>duas caixas de e-mail diferentes</strong> para o mesmo endereço <strong>info@okaerihome.com</strong>: uma no Google Workspace (que vocês usam no dia a dia) e outra criada localmente no servidor de hospedagem. Quando uma mensagem chega, o servidor às vezes a entrega na caixa local — e ela nunca aparece no Gmail.</p>
+    </div>
+
+    <div class="flow">
+      <div class="fstep">Alguém envia<br>um e-mail</div>
+      <div class="farrow">→</div>
+      <div class="fstep bad">Caixa local<br>do servidor</div>
+      <div class="farrow">✕</div>
+      <div class="fstep">Gmail que<br>vocês leem</div>
+    </div>
+
+    <div class="pillar" style="border-top:1px solid var(--outline);padding-top:22px">
+      <div class="pmark wait">!</div>
+      <div class="pbody">
+        <h3>O que encontramos na caixa esquecida</h3>
+        <p>A caixa local tinha <strong>55 mensagens acumuladas</strong>, algumas com semanas de idade. Entre elas, vários avisos de falha de entrega e uma notificação de suspensão de serviço de um fornecedor — o tipo de mensagem que ninguém pode se dar ao luxo de não ver.</p>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pmark wait">!</div>
+      <div class="pbody">
+        <h3>E não é só o info@</h3>
+        <p>Existem outras cinco caixas locais no servidor com o mesmo padrão: <strong>sac@</strong>, <strong>reserva@</strong>, <strong>financeiro@</strong>, <strong>juridico@</strong> e <strong>equipe@</strong>. Ainda não sabemos se estão retendo mensagens — mas o risco é o mesmo, e vale verificar.</p>
+        <div class="detail">Especialmente crítico em reserva@ e sac@, que recebem contato de hóspedes</div>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pmark info">i</div>
+      <div class="pbody">
+        <h3>A boa notícia: a configuração do domínio está correta</h3>
+        <p>Verificamos os registros de autenticação de e-mail do domínio — todos válidos e bem configurados. O problema não é de reputação nem de entrega externa. É exclusivamente essa duplicidade de caixas dentro do servidor, que provavelmente é resquício de antes da migração para o Google Workspace.</p>
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size:20px;margin-top:34px;margin-bottom:14px">Duas formas de resolver</div>
+
+    <div class="opt">
+      <span class="opt-tag a">Opção A · Rápida e sem risco</span>
+      <h4>Trazer a caixa antiga para dentro do Gmail</h4>
+      <p>Configuramos o Gmail para buscar automaticamente as mensagens da caixa local e trazê-las para a caixa de entrada do Workspace, sem apagar nada. Tudo continua onde está, mas passa a aparecer onde vocês olham.</p>
+      <p class="meta">Reversível a qualquer momento · nada é deletado · leva minutos</p>
+    </div>
+
+    <div class="opt">
+      <span class="opt-tag b">Opção B · Definitiva</span>
+      <h4>Remover as caixas duplicadas do servidor</h4>
+      <p>Depois de conferir que não há nada importante retido, removemos as contas locais duplicadas. O e-mail passa a fluir exclusivamente pelo Google Workspace, como deveria ser desde o início — e o problema não volta a acontecer.</p>
+      <p class="meta">Exige conferir as 6 caixas antes · elimina a causa raiz</p>
+    </div>
+
+    <div class="dec" style="margin-top:20px;border-color:var(--primary)">
+      <h4>Recomendação</h4>
+      <p>Fazer a Opção A imediatamente (para parar a perda de mensagens hoje) e agendar a Opção B depois que as seis caixas forem conferidas com calma.</p>
+    </div>
+  </section>
+
+  <section id="gvr">
+    <div class="eyebrow">Parte 5</div>
+    <div class="section-title">A próxima alavanca: Google Vacation Rentals</div>
+    <p class="section-lead">Tudo que foi feito até aqui faz o Google entender melhor as páginas. O GVR é outra coisa: uma integração formal e direta entre o OwnerRez e o Google Travel — a mesma estrutura que hotéis usam para aparecer nos resultados de viagem.</p>
+
+    <div class="gbox">
+      <h3>Reserva direta, sem comissão, vinda do Google</h3>
+      <p>O hóspede pesquisa no Google, encontra a propriedade da Okaeri entre as opções de hospedagem, e é levado direto para a reserva — sem passar por Airbnb, Booking ou qualquer OTA.</p>
+      <ul>
+        <li>O Google exibe, mas não hospeda a reserva — ela é sua</li>
+        <li>Sem comissão sobre a reserva</li>
+        <li>Onboarding leva cerca de duas semanas, com revisão manual do Google</li>
+      </ul>
+      <div class="note">Já confirmado que vamos implementar. Faltam definir os pontos abaixo.</div>
+    </div>
+
+    <div class="section-title" style="font-size:20px;margin-top:34px;margin-bottom:14px">O que precisa ser decidido antes de ativar</div>
+
+    <div class="dec">
+      <h4>1. Reserva instantânea ou com confirmação?</h4>
+      <p>Na reserva instantânea, o pagamento é processado automaticamente e a reserva é confirmada na hora. Na opção com confirmação, o cartão fica retido e vocês têm 24 horas para revisar e aprovar.</p>
+      <p class="ask">A operação prefere velocidade ou uma camada extra de controle?</p>
+    </div>
+
+    <div class="dec">
+      <h4>2. Para onde o Google manda o hóspede?</h4>
+      <p>O GVR só permite direcionar o tráfego para a página institucional do OwnerRez ou para o site hospedado por eles — que está desativado por decisão nossa, já que usamos os widgets no site próprio. Isso significa que, hoje, o tráfego do Google não cairia em okaerihome.com.</p>
+      <p class="ask">Aceitamos a página do OwnerRez por ora, ou investigamos alternativa com o suporte deles?</p>
+    </div>
+
+    <div class="dec">
+      <h4>3. Consistência de preços entre as unidades</h4>
+      <p>O Google é rigoroso: o preço exibido tem que ser exatamente o preço cobrado. Se houver inconsistência de taxas ou impostos entre propriedades, a penalidade é coletiva — pode afetar o ranqueamento de todas, não só da unidade com erro.</p>
+      <p class="ask">Vale uma revisão das regras de preço das 7 unidades antes de ativar.</p>
+    </div>
+
+    <div class="dec">
+      <h4>4. Divisão de responsabilidades</h4>
+      <p>Definir o que fica com a ALoja (configuração técnica, integração, acompanhamento) e o que fica com a Okaeri (decisões comerciais, políticas, revisão de preços).</p>
+    </div>
+  </section>
+
+  <section id="decisoes">
+    <div class="eyebrow">Parte 6</div>
+    <div class="section-title">Outras decisões pendentes</div>
+
+    <div class="dec">
+      <h4>Numeração do endereço do River One</h4>
+      <p>O cadastro no OwnerRez usa "Rua Gerivatiba, 201", mas o prédio está registrado no Google como número 207. Mantivemos o texto do site exatamente como está — só a localização no mapa e nos dados estruturados já usa a coordenada correta do prédio, o que garante que o pino aparece no lugar certo independente dessa decisão.</p>
+      <p class="ask">Corrigimos o texto do site e o cadastro do OwnerRez, ou mantemos como está?</p>
+    </div>
+
+    <div class="dec">
+      <h4>Identidade visual da página de pagamento</h4>
+      <p>A página onde o hóspede finaliza a reserva é hospedada pelo OwnerRez e usa um tema configurado lá dentro. O logotipo atual está desatualizado e o visual precisa ser revisto para ficar alinhado com o site.</p>
+      <p class="ask">Também existe um segundo tema cadastrado, desativado, de origem desconhecida — vale confirmar se pode ser removido.</p>
+    </div>
+
+    <div class="dec">
+      <h4>Perfil do Google Meu Negócio</h4>
+      <p>O perfil da Okaeri está travado há meses no processo de verificação por vídeo. Não encontramos perfis duplicados que expliquem o bloqueio. A estratégia é recriar o perfil por uma conta Google já estabelecida e transferir a administração depois — agora que o site está completo e indexado, o que reforça a legitimidade do negócio na verificação.</p>
+    </div>
+  </section>
+
+  <section id="status">
+    <div class="eyebrow">Resumo</div>
+    <div class="section-title">Status geral de todas as frentes</div>
+
+    <table class="tbl">
+      <tr><th>Frente</th><th>Status</th></tr>
+      <tr><td>Mapa do site e robots</td><td><span class="st ok">No ar</span></td></tr>
+      <tr><td>Google Search Console</td><td><span class="st ok">Verificado</span></td></tr>
+      <tr><td>Redirecionamento de páginas quebradas</td><td><span class="st ok">No ar</span></td></tr>
+      <tr><td>Organização das políticas</td><td><span class="st ok">Concluído</span></td></tr>
+      <tr><td>Formulários funcionando</td><td><span class="st ok">No ar</span></td></tr>
+      <tr><td>Google Analytics instalado</td><td><span class="st ok">Medindo</span></td></tr>
+      <tr><td>Eventos de conversão</td><td><span class="st ok">3 confirmados</span></td></tr>
+      <tr><td>Dados estruturados — 7 unidades</td><td><span class="st ok">Validado</span></td></tr>
+      <tr><td>Dados estruturados — 10 artigos</td><td><span class="st ok">Validado</span></td></tr>
+      <tr><td>Localização no mapa das unidades</td><td><span class="st ok">Corrigido</span></td></tr>
+      <tr><td>Duplicidade de caixas de e-mail</td><td><span class="st wait">Decisão pendente</span></td></tr>
+      <tr><td>Google Vacation Rentals</td><td><span class="st wait">Aguardando definições</span></td></tr>
+      <tr><td>Endereço do River One</td><td><span class="st wait">Decisão pendente</span></td></tr>
+      <tr><td>Visual da página de pagamento</td><td><span class="st wait">A revisar</span></td></tr>
+      <tr><td>Google Meu Negócio</td><td><span class="st wait">Em tratativa</span></td></tr>
+    </table>
+
+    <p class="section-lead" style="margin-top:26px;margin-bottom:0">
+      Em resumo: a parte técnica do site está concluída e validada. O que resta são decisões de negócio — e uma correção de e-mail que recomendamos tratar com prioridade.
+    </p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="brand">ALoja do Anfitrião</div>
+  <p>Relatório de acompanhamento · Okaeri Home Apartments · Setembro de 2026</p>
+</footer>
+
+</body>
+</html>
