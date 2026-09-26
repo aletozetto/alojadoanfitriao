@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operação | A agenda de limpeza que se monta sozinha — aLoja do Anfitrião</title>
+  <meta name="description" content="Para gestores de 20 a 150 unidades: agenda de limpeza automática, prestador avisado no celular, retorno com foto e manutenção registrada. Integrado ao seu PMS, em WhatsApp oficial." />
+  <link rel="icon" href="/img/favicon.ico" />
+  <link rel="canonical" href="https://alojadoanfitriao.com.br/operacao" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Operação | A agenda de limpeza que se monta sozinha — aLoja do Anfitrião" />
+  <meta property="og:description" content="A lista de limpeza deixa de ser montada à mão. O prestador recebe no celular, devolve com foto, e a manutenção fica registrada." />
+  <meta property="og:image" content="https://alojadoanfitriao.com.br/img/og-image.png" />
+  <meta property="og:url" content="https://alojadoanfitriao.com.br/operacao" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { navy:'hsl(213,100%,12%)','navy-deep':'hsl(213,100%,4%)',gold:'hsl(45,99%,67%)','gold-ink':'hsl(40,100%,23%)',surface:'hsl(210,20%,98%)','surface-dim':'hsl(210,10%,86%)','surface-container':'hsl(210,14%,93%)' },
+      fontFamily: { headline:['Noto Serif','serif'], body:['Manrope','sans-serif'] },
+      borderRadius: { DEFAULT:'0.125rem' },
+    }}};
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{font-family:'Manrope',sans-serif;background-color:hsl(210,20%,98%);color:hsl(213,100%,12%)}
+    .font-headline{font-family:'Noto Serif',serif}
+    .glass-nav{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .animate-fade-in-up{animation:fadeInUp .8s ease-out forwards}
+    .tabular{font-variant-numeric:tabular-nums}
+    /* calculadora */
+    #unidades{
+      width:5.5ch;font-family:'Manrope',sans-serif;font-weight:700;font-size:1.6rem;
+      font-variant-numeric:tabular-nums;padding:.35rem .5rem;text-align:center;
+      border:1px solid hsl(210,10%,86%);border-radius:.125rem;background:hsl(210,20%,98%);
+      color:hsl(213,100%,12%);
+    }
+    #unidades::-webkit-outer-spin-button,#unidades::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+    #unidades[type=number]{-moz-appearance:textfield}
+    #faixa{width:100%;accent-color:hsl(40,100%,23%);height:1.5rem}
+    #unidades:focus-visible,#faixa:focus-visible{outline:2px solid hsl(40,100%,23%);outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TY6H203JJW"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TY6H203JJW');</script>
+</head>
+<body class="font-body antialiased">
+
+  <!-- CABEÇALHO ENXUTO — landing sem navegação lateral -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav bg-navy/90 border-b border-white/10">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 text-white">
+        <img src="/img/aloja-anfitriao-logo.png" alt="aLoja do Anfitrião" class="h-14 w-auto object-contain" />
+        <span class="font-headline text-lg md:text-xl tracking-tight hidden sm:block">aLoja do Anfitrião</span>
+      </a>
+      <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20falar%20sobre%20a%20minha%20agenda%20de%20limpeza." class="bg-gold text-navy text-sm font-semibold px-4 py-2 rounded hover:brightness-95 transition">Falar com a gente</a>
+    </nav>
+  </header>
+
+  <main class="pt-16">
+
+    <!-- HERO -->
+    <section class="relative text-white">
+      <div class="absolute inset-0 z-0">
+        <img src="/img/interior-alojamento-temporada-vista-mar.jpg" alt="Operação de aluguel de temporada" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-navy/92"></div>
+      </div>
+      <div class="relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-32">
+        <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6 animate-fade-in-up">Retaguarda de operação · 20 a 150 unidades</p>
+        <h1 class="font-headline text-4xl md:text-5xl lg:text-[3.3rem] leading-[1.1] mb-7 max-w-4xl animate-fade-in-up" style="animation-delay:.1s;opacity:0">Alguém na sua equipe passa o dia <span class="text-gold">montando a lista de limpeza.</span></h1>
+        <p class="text-lg text-white/70 mb-8 max-w-2xl leading-relaxed animate-fade-in-up" style="animation-delay:.2s;opacity:0">Abrir o calendário, conferir imóvel por imóvel quem sai amanhã, montar a lista do prestador. Quando termina, entrou uma reserva nova ou caiu uma — e recomeça. É o custo de uma pessoa em tempo integral num trabalho que não aparece em lugar nenhum.</p>
+        <div class="border-l-2 border-gold pl-4 mb-10 max-w-xl animate-fade-in-up" style="animation-delay:.3s;opacity:0">
+          <p class="text-sm text-white/60"><strong class="text-white/80">Quem monta já teve pousada.</strong> A gente não descobriu hotelaria pela tecnologia. Foi pelo outro lado.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 animate-fade-in-up" style="animation-delay:.4s;opacity:0">
+          <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20entender%20como%20funciona%20na%20minha%20opera%C3%A7%C3%A3o." class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition">Falar sobre a sua operação <span aria-hidden="true">→</span></a>
+          <a href="#investimento" class="inline-flex items-center gap-2 border border-white/25 text-white font-semibold px-8 py-4 rounded hover:border-white/50 transition">Ver quanto custa</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- O QUE ACONTECE HOJE -->
+    <section class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">O que acontece hoje</p>
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-14 leading-tight max-w-2xl">O problema não é a equipe. É a informação passar por uma pessoa só.</h2>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        <div class="border-t border-surface-dim pt-6">
+          <h3 class="font-semibold text-navy mb-2">A lista refeita três vezes no mesmo dia</h3>
+          <p class="text-navy/65 leading-relaxed text-sm">Cada reserva nova ou cancelamento desmonta a agenda que já tinha sido montada e enviada.</p>
+        </div>
+        <div class="border-t border-surface-dim pt-6">
+          <h3 class="font-semibold text-navy mb-2">O grupo de WhatsApp da faxina</h3>
+          <p class="text-navy/65 leading-relaxed text-sm">Trinta pessoas, mensagem de áudio, print de planilha. Quem não leu não fez, e ninguém sabe quem não leu.</p>
+        </div>
+        <div class="border-t border-surface-dim pt-6">
+          <h3 class="font-semibold text-navy mb-2">O “terminei” que nunca chegou</h3>
+          <p class="text-navy/65 leading-relaxed text-sm">A unidade está pronta há duas horas e ninguém sabe. Ou não está, e quem descobre é o hóspede na porta.</p>
+        </div>
+        <div class="border-t border-surface-dim pt-6">
+          <h3 class="font-semibold text-navy mb-2">O chuveiro que ninguém anotou</h3>
+          <p class="text-navy/65 leading-relaxed text-sm">A camareira viu o problema, falou no grupo, a mensagem desceu. Vira reclamação do próximo hóspede.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- O QUE A CAMADA FAZ -->
+    <section class="bg-navy text-white">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+        <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6">Como passa a funcionar</p>
+        <h2 class="font-headline text-3xl md:text-4xl mb-4 leading-tight">Um dia de checkout, do começo ao fim, sem passar por você.</h2>
+        <p class="text-white/60 max-w-2xl mb-16">A camada de operação fica entre o seu PMS e a sua equipe de campo. A reserva continua nascendo onde sempre nasceu — o que muda é o que acontece depois dela.</p>
+
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-12">
+          <div class="border-t-2 border-gold pt-8">
+            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">1 · Agenda</p>
+            <h3 class="font-headline text-2xl mb-3">A agenda de limpeza se monta sozinha</h3>
+            <p class="text-white/70 text-sm leading-relaxed">A reserva entra pelo PMS e a tarefa nasce junto, com data, hora e unidade. Mudou a data, entrou outra, cancelou — a agenda acompanha sem ninguém refazer lista.</p>
+          </div>
+          <div class="border-t-2 border-gold pt-8">
+            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">2 · Campo</p>
+            <h3 class="font-headline text-2xl mb-3">O prestador recebe no celular dele</h3>
+            <p class="text-white/70 text-sm leading-relaxed">O que fazer, onde e quando, direto no WhatsApp. Sem grupo com trinta pessoas, sem ligação de confirmação, sem print de planilha.</p>
+          </div>
+          <div class="border-t-2 border-gold pt-8">
+            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">3 · Retorno</p>
+            <h3 class="font-headline text-2xl mb-3">O serviço volta com foto</h3>
+            <p class="text-white/70 text-sm leading-relaxed">Ao terminar, o prestador registra e manda as imagens. Elas chegam ao painel antes do próximo hóspede entrar — não depois da reclamação dele.</p>
+          </div>
+          <div class="border-t-2 border-gold pt-8">
+            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">4 · Manutenção</p>
+            <h3 class="font-headline text-2xl mb-3">O que precisa de reparo fica registrado</h3>
+            <p class="text-white/70 text-sm leading-relaxed">O chuveiro com problema que a camareira viu chega à operação como informação anotada, com foto, ligada à unidade. Não some numa mensagem de áudio no meio do grupo.</p>
+          </div>
+        </div>
+
+        <div class="mt-16 bg-white/5 border border-white/15 rounded p-8">
+          <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">O painel</p>
+          <p class="text-white/80 leading-relaxed max-w-3xl">Tudo isso fica num lugar só, que a sua equipe opera sem depender de você: agenda do dia, unidades, senhas, equipe, e o retorno de cada serviço com a foto anexada.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROVA -->
+    <section class="bg-surface-container">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+        <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-10">Rodando em operação real</p>
+        <div class="grid md:grid-cols-[1fr_1.15fr] gap-10 md:gap-16 items-start">
+          <div>
+            <blockquote class="font-headline text-2xl md:text-[1.7rem] text-navy leading-snug mb-8">“A gente ficava praticamente o dia todo olhando esse ponto. Hoje esse trabalho acabou.”</blockquote>
+            <div class="border-t border-surface-dim pt-5 text-sm text-navy/60">
+              <p class="font-semibold text-navy">Victor · DaCali — da capital ao litoral</p>
+              <p class="mt-1">~61 unidades · integrada à Stays</p>
+            </div>
+          </div>
+          <div class="space-y-5 text-navy/70 text-[0.95rem] leading-relaxed">
+            <p>“Antes, a gente fazia tudo manual. Entrava na Stays, no calendário, olhava imóvel por imóvel para ver se ia ter checkout no dia seguinte e ia construindo uma lista de limpeza para enviar ao prestador. Quando terminava, entrava outra reserva ou cancelava alguma — e recomeçava.”</p>
+            <p>“Depois que passamos para a automação, esse trabalho acabou. Não conferimos mais nada; só olhamos a lista que vai para o prestador, para ver se não houve falha. E reclamação de hóspede sobre isso, praticamente não temos mais. A equipe inteira ganhou bastante.”</p>
+            <p>“O painel facilitou muito, porque concentra todas as informações num lugar só. Funciona como uma plataforma, tipo a da Stays ou do Airbnb, onde a gente alimenta as informações que precisa.”</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A RESERVA QUE ALIMENTA TUDO -->
+    <section class="bg-navy text-white">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+        <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6">A reserva que alimenta tudo</p>
+        <h2 class="font-headline text-3xl md:text-4xl mb-4 leading-tight">Cadastrada uma vez, usada em todo lugar.</h2>
+        <p class="text-white/60 max-w-2xl mb-14">Página do hóspede, envio de documentos, painel com os dados da estadia: isso existe em muito sistema. O que quase ninguém faz é ligar tudo à mesma reserva — da portaria à limpeza — sem alguém da equipe redigitando no meio.</p>
+
+        <ol class="grid gap-0 border-t border-white/15">
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="text-gold font-semibold tabular text-sm pt-1">01</span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">A reserva é criada no seu PMS</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Stays, Ayrton ou OwnerRez. A partir dela, tudo o que vem abaixo nasce sozinho.</p>
+            </div>
+          </li>
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="text-gold font-semibold tabular text-sm pt-1">02</span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">O hóspede recebe uma página viva da reserva dele</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Um link só daquela reserva. Primeiro, ele envia documentos, acompanhantes e dados do veículo, e aceita o contrato. Depois, o mesmo link vira a página da estadia — e se atualiza sozinho sempre que algo muda na reserva, sem ninguém da equipe precisar mexer.</p>
+            </div>
+          </li>
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="text-gold font-semibold tabular text-sm pt-1">03</span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">Tudo cai no painel da equipe</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Documentos, veículo e contrato ligados à unidade e à data da estadia. Sem planilha paralela, sem procurar anexo em conversa.</p>
+            </div>
+          </li>
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="text-gold font-semibold tabular text-sm pt-1">04</span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">A portaria recebe a liberação</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">O condomínio recebe a autorização de entrada com os dados do hóspede — inclusive quando a reserva é feita para o mesmo dia.</p>
+            </div>
+          </li>
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="text-gold font-semibold tabular text-sm pt-1">05</span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">A limpeza já está agendada</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">A mesma reserva gerou a tarefa do checkout, que você viu lá em cima. Quando a unidade fica pronta, o ciclo recomeça na próxima reserva.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ATENDIMENTO (OPCIONAL) -->
+    <section class="bg-surface-container">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-[1.1fr_1fr] gap-10 md:gap-16 items-start">
+        <div>
+          <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Opcional · atendimento</p>
+          <h2 class="font-headline text-3xl md:text-4xl text-navy mb-6 leading-tight">E quando a sua equipe não está olhando?</h2>
+          <p class="text-navy/70 leading-relaxed mb-5">Madrugada, feriado, domingo à tarde. A pergunta do hóspede chega exatamente no horário em que ninguém da equipe está no celular — e é aí que a reserva vai para o concorrente ou o hóspede fica sem resposta na porta.</p>
+          <p class="text-navy/70 leading-relaxed">O atendimento automático cobre esse espaço lendo a mesma reserva. Responde a senha do Wi-Fi, o horário de checkout e o caminho da unidade <em>daquele</em> hóspede. Consulta disponibilidade, informa valores e conduz quem quer reservar direto com você. Quando o hóspede precisa de gente, passa a conversa para a equipe.</p>
+        </div>
+        <div class="bg-white border border-surface-dim rounded p-8">
+          <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-4">Você decide quando</p>
+          <p class="font-headline text-xl text-navy mb-4 leading-snug">Não quer um robô falando pela sua marca? Ele fica desligado.</p>
+          <p class="text-navy/65 text-sm leading-relaxed">Ou entra só para cobrir o horário em que a equipe não está. Você escolhe na implantação e muda quando quiser — o resto da jornada funciona do mesmo jeito, com ou sem ele.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO SE ENCAIXA -->
+    <section class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Como se encaixa</p>
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-14 leading-tight max-w-2xl">Entra por cima do que você já usa.</h2>
+      <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+        <div class="border-t border-surface-dim pt-6">
+          <h3 class="font-semibold text-navy mb-2">Integra ao seu PMS</h3>
+          <p class="text-navy/65 leading-relaxed text-sm">Integração em produção com Stays, Ayrton e OwnerRez. A reserva continua nascendo onde sempre nasceu.</p>
+        </div>
+        <div class="border-t border-surface-dim pt-6">
+          <h3 class="font-semibold text-navy mb-2">Seu número de WhatsApp continua seu</h3>
+          <p class="text-navy/65 leading-relaxed text-sm">Modo coexistence: a equipe segue atendendo pelo aplicativo no celular e a automação trabalha no mesmo número.</p>
+        </div>
+        <div class="border-t border-surface-dim pt-6">
+          <h3 class="font-semibold text-navy mb-2">API oficial da Meta</h3>
+          <p class="text-navy/65 leading-relaxed text-sm">A aLoja do Anfitrião é Tech Provider homologado pela Meta. Infraestrutura oficial, sem gambiarra de conexão e sem risco de bloqueio do número.</p>
+        </div>
+        <div class="border-t border-surface-dim pt-6">
+          <h3 class="font-semibold text-navy mb-2">Montado sobre a sua rotina</h3>
+          <p class="text-navy/65 leading-relaxed text-sm">Não é software de prateleira para você configurar sozinho. A camada é implantada em cima do jeito que a sua operação já funciona.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVESTIMENTO -->
+    <section id="investimento" class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Investimento</p>
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-5 leading-tight max-w-2xl">Quanto mais unidades, mais barata fica cada uma.</h2>
+      <p class="text-navy/70 max-w-2xl leading-relaxed mb-10">R$ 590 por mês até 15 unidades. Da décima sexta em diante, cada unidade entra um pouco mais barata que a anterior — sem faixas e sem degraus, para que crescer nunca signifique pular de preço.</p>
+
+      <div class="bg-white border border-surface-dim rounded p-8 md:p-12 shadow-sm">
+        <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div>
+            <label for="unidades" class="block text-sm font-semibold text-navy/70 mb-3">Quantas unidades você administra?</label>
+            <div class="flex items-center gap-3">
+              <input id="unidades" type="number" min="1" max="150" step="1" value="20" inputmode="numeric" />
+              <span class="text-sm text-navy/60">unidades sob gestão</span>
+            </div>
+            <input id="faixa" type="range" min="1" max="150" step="1" value="20" class="mt-6" aria-label="Número de unidades" />
+            <div class="flex justify-between text-xs text-navy/40 tabular"><span>1</span><span>50</span><span>100</span><span>150</span></div>
+          </div>
+          <div class="border-l-4 border-gold pl-6">
+            <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-3">Mensalidade · jornada completa</p>
+            <p id="valor" class="font-headline text-4xl md:text-5xl text-navy leading-none tabular">R$ 669</p>
+            <p id="porUnidade" class="text-sm text-navy/60 mt-3 tabular">R$ 33 por unidade, por mês</p>
+          </div>
+        </div>
+
+        <div class="mt-10 pt-8 border-t border-surface-dim grid md:grid-cols-2 gap-8">
+          <div>
+            <p class="text-navy font-semibold text-sm mb-2">Condição de fundação</p>
+            <p class="text-navy/65 text-sm leading-relaxed">A jornada inteira — página do hóspede, portaria, limpeza e atendimento — entra no valor da camada de operação. É a condição dos primeiros clientes desta safra, e ela fica travada para quem entrar agora.</p>
+          </div>
+          <div>
+            <p class="text-navy font-semibold text-sm mb-2">Implantação sob consulta</p>
+            <p class="text-navy/65 text-sm leading-relaxed">Depende do PMS, do tamanho da operação e do que já existe montado. Definida no diagnóstico, antes de qualquer proposta.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-navy/60 text-sm mt-8 max-w-2xl leading-relaxed">A comparação certa não é com um software. <strong class="text-navy">É com o custo de uma pessoa na folha fazendo esse trabalho todo dia.</strong></p>
+    </section>
+
+    <!-- DIFERENCIAL -->
+    <section class="bg-surface-container">
+      <div class="max-w-3xl mx-auto px-6 py-20 md:py-24">
+        <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-6">Quem construiu</p>
+        <h2 class="font-headline text-3xl md:text-4xl text-navy mb-6 leading-tight">Catorze anos operando antes de escrever a primeira linha.</h2>
+        <div class="space-y-5 text-navy/70 leading-relaxed">
+          <p>A aLoja do Anfitrião nasceu de uma pousada em Maresias e de casas de temporada na praia, tocadas por catorze anos pelos mesmos dois sócios que hoje constroem o sistema. A lista montada à mão no domingo à noite, o prestador que não avisou que terminou, o hóspede que chegou antes da unidade ficar pronta — nada disso é hipótese aqui.</p>
+          <p>É a diferença entre uma empresa de tecnologia que descobriu a hospitalidade e uma operação de hospitalidade que aprendeu a construir tecnologia.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="max-w-3xl mx-auto px-6 py-24 text-center">
+      <h2 class="font-headline text-3xl md:text-5xl text-navy mb-6 leading-tight">Como funciona hoje a sua <span class="text-gold-ink">agenda de limpeza?</span></h2>
+      <p class="text-navy/60 max-w-xl mx-auto mb-10 leading-relaxed">É por aí que a conversa começa — entendendo a sua operação antes de falar de sistema. Sem apresentação longa, sem proposta pronta.</p>
+      <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20conversar%20sobre%20a%20minha%20agenda%20de%20limpeza." class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition text-lg">Começar uma conversa <span aria-hidden="true">→</span></a>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ ENXUTO -->
+  <footer class="bg-navy-deep text-white/60">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <div class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <img src="/img/aloja-anfitriao-logo.png" alt="aLoja do Anfitrião" class="h-10 w-auto object-contain" />
+            <span class="font-headline text-lg text-white">aLoja do Anfitrião</span>
+          </div>
+          <p class="text-xs text-white/40">© 2026 aLoja do Anfitrião · CNPJ 66.215.844/0001-68</p>
+          <p class="text-xs text-white/40 mt-1">São Sebastião · SP · Atendemos todo o Brasil</p>
+        </div>
+        <div class="flex items-center gap-5">
+          <a href="https://share.google/7Wy6IX37S20AuocW4" target="_blank" rel="noopener" aria-label="Google Meu Negócio" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8h9.16c.09.5.14 1.02.14 1.56C21.3 17.52 17.4 21 12 21A9 9 0 1 1 12 3c2.44 0 4.62.92 6.28 2.44l-2.57 2.5A5.5 5.5 0 0 0 12 6.5a5.5 5.5 0 1 0 3.88 9.45H12v-5.15z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/alojadoanfitriao" target="_blank" rel="noopener" aria-label="Instagram" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/alojadoanfitriao" target="_blank" rel="noopener" aria-label="Facebook" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/aletozetto/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@alojadoanfitriao" target="_blank" rel="noopener" aria-label="YouTube" class="text-white/40 hover:text-gold transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var campo = document.getElementById('unidades');
+      var faixa = document.getElementById('faixa');
+      var valor = document.getElementById('valor');
+      var porUn = document.getElementById('porUnidade');
+
+      function mensalidade(n) {
+        if (n <= 15) return 590;
+        return Math.round(590 + 11 * (n - 15) + 333.33 * (1 - Math.pow(0.985, n - 15)));
+      }
+
+      function reais(v) { return 'R$ ' + v.toLocaleString('pt-BR'); }
+
+      function pintar(n) {
+        var total = mensalidade(n);
+        valor.textContent = reais(total);
+        porUn.textContent = reais(Math.round(total / n)) + ' por unidade, por mês';
+      }
+
+      function ler(origem) {
+        var n = parseInt(origem.value, 10);
+        if (isNaN(n)) return;
+        if (n < 1) n = 1;
+        if (n > 150) n = 150;
+        campo.value = n;
+        faixa.value = n;
+        pintar(n);
+      }
+
+      campo.addEventListener('input', function () { ler(campo); });
+      faixa.addEventListener('input', function () { ler(faixa); });
+      ler(faixa);
+    })();
+  </script>
+
+</body>
+</html>
