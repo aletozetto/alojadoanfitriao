@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Operação | A agenda de limpeza que se monta sozinha — aLoja do Anfitrião</title>
-  <meta name="description" content="Agenda de limpeza automática, prestador avisado no celular, retorno com foto e manutenção registrada. Integrado ao seu PMS, em WhatsApp oficial." />
+  <meta name="description" content="Para gestores de 20 a 150 unidades: agenda de limpeza automática, prestador avisado no celular, retorno com foto e manutenção registrada. Integrado ao seu PMS, em WhatsApp oficial." />
   <link rel="icon" href="/img/favicon.ico" />
   <link rel="canonical" href="https://alojadoanfitriao.com.br/operacao" />
   <meta property="og:type" content="website" />
@@ -32,6 +32,30 @@
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
     .animate-fade-in-up{animation:fadeInUp .8s ease-out forwards}
     .tabular{font-variant-numeric:tabular-nums}
+
+    /* Véu do hero — escurece o lado do texto e deixa a foto aparecer do outro.
+       Em CSS puro de propósito: opacidades fora da escala do Tailwind não são geradas. */
+    .hero-veu{
+      position:absolute;inset:0;
+      background:linear-gradient(95deg,
+        hsl(213,100%,10%) 0%,
+        hsla(213,100%,10%,.94) 30%,
+        hsla(213,100%,10%,.78) 46%,
+        hsla(213,100%,11%,.42) 66%,
+        hsla(213,100%,12%,.18) 100%);
+    }
+    @media(max-width:767px){
+      .hero-veu{
+        background:linear-gradient(180deg,
+          hsla(213,100%,10%,.90) 0%,
+          hsla(213,100%,10%,.86) 60%,
+          hsla(213,100%,10%,.78) 100%);
+      }
+    }
+    .sombra-texto{text-shadow:0 1px 24px hsla(213,100%,4%,.55)}
+
+    /* gráfico da curva de preço */
+    .grafico-ponto{transition:r .15s ease}
     /* calculadora */
     #unidades{
       width:5.5ch;font-family:'Manrope',sans-serif;font-weight:700;font-size:1.6rem;
@@ -50,146 +74,153 @@
 </head>
 <body class="font-body antialiased">
 
-  <!-- CABEÇALHO ENXUTO -->
+  <!-- Biblioteca de ícones: definidos uma vez, referenciados com <use> -->
+  <svg width="0" height="0" class="hidden" aria-hidden="true" focusable="false">
+    <defs>
+      <g id="ic-agenda" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>
+      </g>
+      <g id="ic-refazer" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 11a8 8 0 1 0-1.6 5.3"/><path d="M20 5v6h-6"/>
+      </g>
+      <g id="ic-grupo" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5.1A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>
+      </g>
+      <g id="ic-relogio" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/>
+      </g>
+      <g id="ic-chave" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.5 5.5a4.5 4.5 0 1 1-3.6 7.2L4 19.6V21H7v-2h2v-2h2l.9-.9a4.5 4.5 0 0 1 2.6-10.6Z"/><path d="M16.4 8.1h.01"/>
+      </g>
+      <g id="ic-celular" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.8 18.6h2.4"/>
+      </g>
+      <g id="ic-foto" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.4"/><path d="M8.5 6l1.3-2h4.4L15.5 6"/>
+      </g>
+      <g id="ic-chave-inglesa" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15.5 3.5a5 5 0 0 0-4.3 7.5L3.5 18.7 5.3 20.5l7.7-7.7a5 5 0 0 0 6.2-6.6l-2.8 2.8-2.4-.6-.6-2.4 2.8-2.8a5 5 0 0 0-.7-.2Z"/>
+      </g>
+      <g id="ic-documento" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>
+      </g>
+      <g id="ic-painel" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="10" width="8" height="11" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/>
+      </g>
+      <g id="ic-portaria" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 21V8l8-5 8 5v13"/><path d="M9.5 21v-6h5v6"/><path d="M2.5 21h19"/>
+      </g>
+      <g id="ic-lua" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+      </g>
+      <g id="ic-camadas" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m12 2.5 9 5-9 5-9-5 9-5Z"/><path d="m3.5 12 8.5 4.7L20.5 12M3.5 16.5l8.5 4.7 8.5-4.7"/>
+      </g>
+      <g id="ic-selo" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2.5 14.6 5l3.5.2.2 3.5L20.8 11l-2.5 2.3-.2 3.5-3.5.2L12 19.5 9.4 17l-3.5-.2-.2-3.5L3.2 11l2.5-2.3.2-3.5L9.4 5 12 2.5Z"/><path d="m9.2 11.2 1.9 1.9 3.7-3.7"/>
+      </g>
+      <g id="ic-regua" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.5 14.5 14.5 3.5l6 6-11 11z"/><path d="M7 11l2 2M10 8l2 2M13 5l2 2"/>
+      </g>
+    </defs>
+  </svg>
+
+  <!-- CABEÇALHO ENXUTO — landing sem navegação lateral -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav bg-navy/90 border-b border-white/10">
     <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" target="_blank" rel="noopener" class="flex items-center gap-3 text-white">
+      <a href="/" class="flex items-center gap-3 text-white">
         <img src="/img/aloja-anfitriao-logo.png" alt="aLoja do Anfitrião" class="h-14 w-auto object-contain" />
         <span class="font-headline text-lg md:text-xl tracking-tight hidden sm:block">aLoja do Anfitrião</span>
       </a>
-      <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20falar%20sobre%20a%20minha%20agenda%20de%20limpeza." target="_blank" rel="noopener" class="bg-gold text-navy text-sm font-semibold px-4 py-2 rounded hover:brightness-95 transition flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-        Falar com a gente
-      </a>
+      <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20falar%20sobre%20a%20minha%20agenda%20de%20limpeza." target="_blank" rel="noopener" class="bg-gold text-navy text-sm font-semibold px-4 py-2 rounded hover:brightness-95 transition">Falar com a gente</a>
     </nav>
   </header>
 
   <main class="pt-16">
 
-    <!-- HERO (Ajuste Focado nas Cores e Posição) -->
+    <!-- HERO -->
     <section class="relative text-white">
-      <!-- Imagem e Overlay -->
       <div class="absolute inset-0 z-0">
         <img src="/img/hero-operacao-bg.jpg" alt="Operação de aluguel de temporada" class="w-full h-full object-cover" />
-        <!-- Gradiente: mais escuro na esquerda para dar leitura, transparente na direita para mostrar a imagem -->
-        <div class="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/70 to-navy/20"></div>
+        <div class="hero-veu"></div>
       </div>
-      
-      <!-- Conteúdo reposicionado para a esquerda -->
-      <div class="relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-32">
-        <div class="max-w-2xl">
-          <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6 animate-fade-in-up drop-shadow-md">Retaguarda de operação · Anfitrões, Hotéis e Pousadas</p>
-        0
-          <h1 class="font-headline text-4xl md:text-5xl lg:text-[3.3rem] leading-[1.2] mb-7 animate-fade-in-up" style="animation-delay:.1s;opacity:0; text-shadow: 0 4px 15px rgba(0,0,0,0.6);"> Alguém na sua equipe passa o dia <br class="hidden sm:block" /> <span class="text-gold inline-block mt-1 md:mt-2">montando a lista de limpeza.</span> </h1>
-          
-          <p class="text-lg text-white/90 mb-8 leading-relaxed animate-fade-in-up drop-shadow-md" style="animation-delay:.2s;opacity:0">Abrir o calendário, conferir imóvel por imóvel quem sai amanhã, montar a lista do prestador. Quando termina, entrou uma reserva nova ou caiu uma — e recomeça. É o custo de uma pessoa em tempo integral num trabalho que não aparece em lugar nenhum.</p>
-          
-          <div class="border-l-2 border-gold pl-4 mb-10 animate-fade-in-up drop-shadow-md" style="animation-delay:.3s;opacity:0">
-            <p class="text-sm text-white/80"><strong class="text-white">Quem monta já teve pousada.</strong> A gente não descobriu hotelaria pela tecnologia. Foi pelo outro lado.</p>
+      <div class="relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-36">
+        <div class="md:max-w-[54%]">
+          <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6 animate-fade-in-up sombra-texto">Retaguarda de operação · 20 a 150 unidades</p>
+          <h1 class="font-headline text-4xl md:text-[2.9rem] lg:text-5xl leading-[1.12] mb-7 animate-fade-in-up sombra-texto" style="animation-delay:.1s;opacity:0">Alguém na sua equipe passa o dia <span class="text-gold">montando a lista de limpeza.</span></h1>
+          <p class="text-lg text-white/85 mb-8 leading-relaxed animate-fade-in-up sombra-texto" style="animation-delay:.2s;opacity:0">Abrir o calendário, conferir imóvel por imóvel quem sai amanhã, montar a lista do prestador. Quando termina, entrou uma reserva nova ou caiu uma — e recomeça. É o custo de uma pessoa em tempo integral num trabalho que não aparece em lugar nenhum.</p>
+          <div class="border-l-2 border-gold pl-4 mb-10 animate-fade-in-up" style="animation-delay:.3s;opacity:0">
+            <p class="text-sm text-white/75 sombra-texto"><strong class="text-white">Quem monta já teve pousada.</strong> A gente não descobriu hotelaria pela tecnologia. Foi pelo outro lado.</p>
           </div>
-          
           <div class="flex flex-wrap gap-3 animate-fade-in-up" style="animation-delay:.4s;opacity:0">
-            <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20entender%20como%20funciona%20na%20minha%20opera%C3%A7%C3%A3o." target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition shadow-lg">Falar sobre a sua operação <span aria-hidden="true">→</span></a>
-            
-            <a href="#investimento" class="inline-flex items-center gap-2 border border-white/30 bg-navy/30 backdrop-blur-sm text-white font-semibold px-8 py-4 rounded hover:bg-navy/50 transition shadow-lg">Ver quanto custa</a>
+            <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20entender%20como%20funciona%20na%20minha%20opera%C3%A7%C3%A3o." target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition">Falar sobre a sua operação <span aria-hidden="true">→</span></a>
+            <a href="#investimento" class="inline-flex items-center gap-2 border border-white/40 bg-navy-deep/30 text-white font-semibold px-8 py-4 rounded hover:border-white/70 transition">Ver quanto custa</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- O QUE ACONTECE HOJE (Com Ícones) -->
+    <!-- O QUE ACONTECE HOJE -->
     <section class="max-w-5xl mx-auto px-6 py-20 md:py-28">
-      <div class="flex items-center gap-3 mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gold-ink"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-        <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase">O que acontece hoje</p>
-      </div>
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">O que acontece hoje</p>
       <h2 class="font-headline text-3xl md:text-4xl text-navy mb-14 leading-tight max-w-2xl">O problema não é a equipe. É a informação passar por uma pessoa só.</h2>
-      
       <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
         <div class="border-t border-surface-dim pt-6">
-          <div class="w-10 h-10 rounded bg-navy/5 flex items-center justify-center text-navy mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.92-10.27l-5.42 5.42"></path></svg>
-          </div>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface-container text-gold-ink mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5"><use href="#ic-refazer"/></svg></span>
           <h3 class="font-semibold text-navy mb-2">A lista refeita três vezes no mesmo dia</h3>
           <p class="text-navy/65 leading-relaxed text-sm">Cada reserva nova ou cancelamento desmonta a agenda que já tinha sido montada e enviada.</p>
         </div>
         <div class="border-t border-surface-dim pt-6">
-          <div class="w-10 h-10 rounded bg-navy/5 flex items-center justify-center text-navy mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-          </div>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface-container text-gold-ink mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5"><use href="#ic-grupo"/></svg></span>
           <h3 class="font-semibold text-navy mb-2">O grupo de WhatsApp da faxina</h3>
           <p class="text-navy/65 leading-relaxed text-sm">Trinta pessoas, mensagem de áudio, print de planilha. Quem não leu não fez, e ninguém sabe quem não leu.</p>
         </div>
         <div class="border-t border-surface-dim pt-6">
-          <div class="w-10 h-10 rounded bg-navy/5 flex items-center justify-center text-navy mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          </div>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface-container text-gold-ink mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5"><use href="#ic-relogio"/></svg></span>
           <h3 class="font-semibold text-navy mb-2">O “terminei” que nunca chegou</h3>
           <p class="text-navy/65 leading-relaxed text-sm">A unidade está pronta há duas horas e ninguém sabe. Ou não está, e quem descobre é o hóspede na porta.</p>
         </div>
         <div class="border-t border-surface-dim pt-6">
-          <div class="w-10 h-10 rounded bg-navy/5 flex items-center justify-center text-navy mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-          </div>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface-container text-gold-ink mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5"><use href="#ic-chave-inglesa"/></svg></span>
           <h3 class="font-semibold text-navy mb-2">O chuveiro que ninguém anotou</h3>
           <p class="text-navy/65 leading-relaxed text-sm">A camareira viu o problema, falou no grupo, a mensagem desceu. Vira reclamação do próximo hóspede.</p>
         </div>
       </div>
     </section>
 
-    <!-- O QUE A CAMADA FAZ (Com Ícones e Destaques Visuais) -->
+    <!-- O QUE A CAMADA FAZ -->
     <section class="bg-navy text-white">
       <div class="max-w-5xl mx-auto px-6 py-20 md:py-28">
-        <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6 flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          Como passa a funcionar
-        </p>
+        <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6">Como passa a funcionar</p>
         <h2 class="font-headline text-3xl md:text-4xl mb-4 leading-tight">Um dia de checkout, do começo ao fim, sem passar por você.</h2>
         <p class="text-white/60 max-w-2xl mb-16">A camada de operação fica entre o seu PMS e a sua equipe de campo. A reserva continua nascendo onde sempre nasceu — o que muda é o que acontece depois dela.</p>
 
         <div class="grid md:grid-cols-2 gap-x-12 gap-y-12">
-          <div class="border-t-2 border-gold pt-8 relative">
-            <div class="absolute -top-3 right-0 bg-gold/10 text-gold rounded-full p-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            </div>
-            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">1 · Agenda</p>
+          <div class="border-t-2 border-gold pt-8">
+            <div class="flex items-center gap-3 mb-3"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-agenda"/></svg><p class="text-gold text-xs font-semibold tracking-widest uppercase">1 · Agenda</p></div>
             <h3 class="font-headline text-2xl mb-3">A agenda de limpeza se monta sozinha</h3>
             <p class="text-white/70 text-sm leading-relaxed">A reserva entra pelo PMS e a tarefa nasce junto, com data, hora e unidade. Mudou a data, entrou outra, cancelou — a agenda acompanha sem ninguém refazer lista.</p>
           </div>
-          <div class="border-t-2 border-gold pt-8 relative">
-            <div class="absolute -top-3 right-0 bg-gold/10 text-gold rounded-full p-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-            </div>
-            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">2 · Campo</p>
+          <div class="border-t-2 border-gold pt-8">
+            <div class="flex items-center gap-3 mb-3"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-celular"/></svg><p class="text-gold text-xs font-semibold tracking-widest uppercase">2 · Campo</p></div>
             <h3 class="font-headline text-2xl mb-3">O prestador recebe no celular dele</h3>
             <p class="text-white/70 text-sm leading-relaxed">O que fazer, onde e quando, direto no WhatsApp. Sem grupo com trinta pessoas, sem ligação de confirmação, sem print de planilha.</p>
           </div>
-          <div class="border-t-2 border-gold pt-8 relative">
-            <div class="absolute -top-3 right-0 bg-gold/10 text-gold rounded-full p-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-            </div>
-            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">3 · Retorno</p>
+          <div class="border-t-2 border-gold pt-8">
+            <div class="flex items-center gap-3 mb-3"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-foto"/></svg><p class="text-gold text-xs font-semibold tracking-widest uppercase">3 · Retorno</p></div>
             <h3 class="font-headline text-2xl mb-3">O serviço volta com foto</h3>
             <p class="text-white/70 text-sm leading-relaxed">Ao terminar, o prestador registra e manda as imagens. Elas chegam ao painel antes do próximo hóspede entrar — não depois da reclamação dele.</p>
           </div>
-          <div class="border-t-2 border-gold pt-8 relative">
-            <div class="absolute -top-3 right-0 bg-gold/10 text-gold rounded-full p-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-            </div>
-            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">4 · Manutenção</p>
+          <div class="border-t-2 border-gold pt-8">
+            <div class="flex items-center gap-3 mb-3"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-chave-inglesa"/></svg><p class="text-gold text-xs font-semibold tracking-widest uppercase">4 · Manutenção</p></div>
             <h3 class="font-headline text-2xl mb-3">O que precisa de reparo fica registrado</h3>
             <p class="text-white/70 text-sm leading-relaxed">O chuveiro com problema que a camareira viu chega à operação como informação anotada, com foto, ligada à unidade. Não some numa mensagem de áudio no meio do grupo.</p>
           </div>
         </div>
 
-        <div class="mt-16 bg-white/5 border border-white/15 rounded-lg p-8 flex flex-col md:flex-row gap-6 items-start">
-          <div class="bg-white/10 p-4 rounded text-gold">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-          </div>
-          <div>
-            <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-2">O painel</p>
-            <p class="text-white/80 leading-relaxed max-w-3xl">Tudo isso fica num lugar só, que a sua equipe opera sem depender de você: agenda do dia, unidades, senhas, equipe, e o retorno de cada serviço com a foto anexada.</p>
-          </div>
+        <div class="mt-16 bg-white/5 border border-white/15 rounded p-8">
+          <p class="text-gold text-xs font-semibold tracking-widest uppercase mb-3">O painel</p>
+          <p class="text-white/80 leading-relaxed max-w-3xl">Tudo isso fica num lugar só, que a sua equipe opera sem depender de você: agenda do dia, unidades, senhas, equipe, e o retorno de cada serviço com a foto anexada.</p>
         </div>
       </div>
     </section>
@@ -198,22 +229,15 @@
     <section class="bg-surface-container">
       <div class="max-w-5xl mx-auto px-6 py-20 md:py-28">
         <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-10">Rodando em operação real</p>
-        <div class="grid md:grid-cols-[1fr_1.15fr] gap-10 md:gap-16 items-start relative">
-          
-          <!-- Elemento decorativo de citação -->
-          <svg class="absolute -top-6 -left-6 w-16 h-16 text-navy/5 opacity-50" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path></svg>
-          
-          <div class="relative z-10">
+        <div class="grid md:grid-cols-[1fr_1.15fr] gap-10 md:gap-16 items-start">
+          <div>
             <blockquote class="font-headline text-2xl md:text-[1.7rem] text-navy leading-snug mb-8">“A gente ficava praticamente o dia todo olhando esse ponto. Hoje esse trabalho acabou.”</blockquote>
-            <div class="border-t border-surface-dim pt-5 text-sm text-navy/60 flex items-center gap-4">
-              <div class="w-12 h-12 bg-navy/10 rounded-full flex items-center justify-center text-navy font-bold text-lg">V</div>
-              <div>
-                <p class="font-semibold text-navy">Victor · DaCali — da capital ao litoral</p>
-                <p class="mt-1">~61 unidades · integrada à Stays</p>
-              </div>
+            <div class="border-t border-surface-dim pt-5 text-sm text-navy/60">
+              <p class="font-semibold text-navy">Victor · DaCali — da capital ao litoral</p>
+              <p class="mt-1">~61 unidades · integrada à Stays</p>
             </div>
           </div>
-          <div class="space-y-5 text-navy/70 text-[0.95rem] leading-relaxed relative z-10">
+          <div class="space-y-5 text-navy/70 text-[0.95rem] leading-relaxed">
             <p>“Antes, a gente fazia tudo manual. Entrava na Stays, no calendário, olhava imóvel por imóvel para ver se ia ter checkout no dia seguinte e ia construindo uma lista de limpeza para enviar ao prestador. Quando terminava, entrava outra reserva ou cancelava alguma — e recomeçava.”</p>
             <p>“Depois que passamos para a automação, esse trabalho acabou. Não conferimos mais nada; só olhamos a lista que vai para o prestador, para ver se não houve falha. E reclamação de hóspede sobre isso, praticamente não temos mais. A equipe inteira ganhou bastante.”</p>
             <p>“O painel facilitou muito, porque concentra todas as informações num lugar só. Funciona como uma plataforma, tipo a da Stays ou do Airbnb, onde a gente alimenta as informações que precisa.”</p>
@@ -224,154 +248,106 @@
 
     <!-- VEJA FUNCIONANDO -->
     <section class="max-w-5xl mx-auto px-6 py-20 md:py-28">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-        <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase">Veja funcionando</p>
-      </div>
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Veja funcionando</p>
       <h2 class="font-headline text-3xl md:text-4xl text-navy mb-5 leading-tight max-w-2xl">Um minuto olhando as telas.</h2>
       <p class="text-navy/70 leading-relaxed max-w-2xl mb-10">A agenda do dia montada sozinha, o retorno do prestador e o painel onde a equipe acompanha tudo — as mesmas telas que a sua operação usaria.</p>
 
-      <div class="relative aspect-video rounded-xl overflow-hidden bg-navy-deep shadow-2xl border border-surface-dim group cursor-pointer">
+      <div class="relative aspect-video rounded overflow-hidden bg-navy-deep shadow-lg">
         <video class="absolute inset-0 w-full h-full" controls preload="none" playsinline poster="/img/video-capa.jpg">
           <source src="/video/operacao.mp4" type="video/mp4">
           Seu navegador não consegue exibir este vídeo.
         </video>
-        <!-- Overlay Play Icon Customizado -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:bg-navy/10 transition">
-          <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-navy ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          </div>
-        </div>
       </div>
-      <p class="text-navy/50 text-sm mt-4 flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-        1 minuto · com áudio
-      </p>
+      <p class="text-navy/50 text-sm mt-4">1 minuto · com áudio</p>
     </section>
 
-    <!-- A RESERVA QUE ALIMENTA TUDO (Timeline Visual) -->
+    <!-- A RESERVA QUE ALIMENTA TUDO -->
     <section class="bg-navy text-white">
       <div class="max-w-5xl mx-auto px-6 py-20 md:py-28">
-        <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6 flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-          A reserva que alimenta tudo
-        </p>
+        <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6">A reserva que alimenta tudo</p>
         <h2 class="font-headline text-3xl md:text-4xl mb-4 leading-tight">Cadastrada uma vez, usada em todo lugar.</h2>
         <p class="text-white/60 max-w-2xl mb-14">Página do hóspede, envio de documentos, painel com os dados da estadia: isso existe em muito sistema. O que quase ninguém faz é ligar tudo à mesma reserva — da portaria à limpeza — sem alguém da equipe redigitando no meio.</p>
 
-        <!-- Formato de Timeline -->
-        <div class="relative pl-6 md:pl-10 border-l border-white/20 space-y-12">
-          
-          <div class="relative">
-            <div class="absolute -left-10 md:-left-14 w-8 h-8 rounded-full bg-navy border-2 border-gold flex items-center justify-center">
-              <span class="text-gold font-bold text-xs">01</span>
+        <ol class="grid gap-0 border-t border-white/15">
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="flex items-start gap-2 pt-1"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-agenda"/></svg><span class="text-gold font-semibold tabular text-sm">01</span></span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">A reserva é criada no seu PMS</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Stays, Ayrton ou OwnerRez. A partir dela, tudo o que vem abaixo nasce sozinho.</p>
             </div>
-            <h3 class="font-headline text-xl mb-2 flex items-center gap-2">A reserva é criada no seu PMS</h3>
-            <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Stays, Ayrton ou OwnerRez. A partir dela, tudo o que vem abaixo nasce sozinho.</p>
-          </div>
-          
-          <div class="relative">
-            <div class="absolute -left-10 md:-left-14 w-8 h-8 rounded-full bg-navy border-2 border-gold flex items-center justify-center">
-              <span class="text-gold font-bold text-xs">02</span>
+          </li>
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="flex items-start gap-2 pt-1"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-documento"/></svg><span class="text-gold font-semibold tabular text-sm">02</span></span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">O hóspede recebe uma página viva da reserva dele</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Um link só daquela reserva. Primeiro, ele envia documentos, acompanhantes e dados do veículo, e aceita o contrato. Depois, o mesmo link vira a página da estadia — e se atualiza sozinho sempre que algo muda na reserva, sem ninguém da equipe precisar mexer.</p>
             </div>
-            <h3 class="font-headline text-xl mb-2">O hóspede recebe uma página viva da reserva dele</h3>
-            <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Um link só daquela reserva. Primeiro, ele envia documentos, acompanhantes e dados do veículo, e aceita o contrato. Depois, o mesmo link vira a página da estadia — e se atualiza sozinho sempre que algo muda na reserva, sem ninguém da equipe precisar mexer.</p>
-          </div>
-          
-          <div class="relative">
-            <div class="absolute -left-10 md:-left-14 w-8 h-8 rounded-full bg-navy border-2 border-gold flex items-center justify-center">
-              <span class="text-gold font-bold text-xs">03</span>
+          </li>
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="flex items-start gap-2 pt-1"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-painel"/></svg><span class="text-gold font-semibold tabular text-sm">03</span></span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">Tudo cai no painel da equipe</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Documentos, veículo e contrato ligados à unidade e à data da estadia. Sem planilha paralela, sem procurar anexo em conversa.</p>
             </div>
-            <h3 class="font-headline text-xl mb-2">Tudo cai no painel da equipe</h3>
-            <p class="text-white/65 text-sm leading-relaxed max-w-2xl">Documentos, veículo e contrato ligados à unidade e à data da estadia. Sem planilha paralela, sem procurar anexo em conversa.</p>
-          </div>
-          
-          <div class="relative">
-            <div class="absolute -left-10 md:-left-14 w-8 h-8 rounded-full bg-navy border-2 border-gold flex items-center justify-center">
-              <span class="text-gold font-bold text-xs">04</span>
+          </li>
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="flex items-start gap-2 pt-1"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-portaria"/></svg><span class="text-gold font-semibold tabular text-sm">04</span></span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">A portaria recebe a liberação</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">O condomínio recebe a autorização de entrada com os dados do hóspede — inclusive quando a reserva é feita para o mesmo dia.</p>
             </div>
-            <h3 class="font-headline text-xl mb-2">A portaria recebe a liberação</h3>
-            <p class="text-white/65 text-sm leading-relaxed max-w-2xl">O condomínio recebe a autorização de entrada com os dados do hóspede — inclusive quando a reserva é feita para o mesmo dia.</p>
-          </div>
-          
-          <div class="relative">
-            <div class="absolute -left-10 md:-left-14 w-8 h-8 rounded-full bg-navy border-2 border-gold flex items-center justify-center">
-              <span class="text-gold font-bold text-xs">05</span>
+          </li>
+          <li class="grid grid-cols-[3rem_1fr] gap-4 py-7 border-b border-white/15">
+            <span class="flex items-start gap-2 pt-1"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold shrink-0"><use href="#ic-chave"/></svg><span class="text-gold font-semibold tabular text-sm">05</span></span>
+            <div>
+              <h3 class="font-headline text-xl mb-2">A limpeza já está agendada</h3>
+              <p class="text-white/65 text-sm leading-relaxed max-w-2xl">A mesma reserva gerou a tarefa do checkout, que você viu lá em cima. Quando a unidade fica pronta, o ciclo recomeça na próxima reserva.</p>
             </div>
-            <h3 class="font-headline text-xl mb-2">A limpeza já está agendada</h3>
-            <p class="text-white/65 text-sm leading-relaxed max-w-2xl">A mesma reserva gerou a tarefa do checkout, que você viu lá em cima. Quando a unidade fica pronta, o ciclo recomeça na próxima reserva.</p>
-          </div>
-
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- ATENDIMENTO (OPCIONAL) -->
-    <section class="bg-surface-container relative overflow-hidden">
-      <!-- Elemento gráfico de fundo -->
-      <svg class="absolute right-0 top-0 text-white opacity-40 w-96 h-96 transform translate-x-1/3 -translate-y-1/4" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.4,-46.3C91,-33.5,97.3,-18,97,-2.8C96.7,12.4,89.8,27.3,79.9,39.6C70,51.9,57.1,61.6,43.3,70.2C29.5,78.8,14.7,86.3,0.5,85.5C-13.8,84.7,-27.6,75.6,-40.8,66.4C-54.1,57.2,-66.8,47.9,-75.4,35.6C-84,23.3,-88.4,8,-86.3,-6.5C-84.3,-21,-75.7,-34.7,-64.8,-45.1C-53.9,-55.5,-40.6,-62.7,-27.5,-70.6C-14.4,-78.5,-1.5,-87.1,11.3,-84.9C24.1,-82.6,30.5,-83.6,44.7,-76.4Z" transform="translate(100 100)" /></svg>
-
-      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-[1.1fr_1fr] gap-10 md:gap-16 items-start relative z-10">
+    <section class="bg-surface-container">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-[1.1fr_1fr] gap-10 md:gap-16 items-start">
         <div>
-          <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-            Opcional · atendimento
-          </p>
+          <div class="flex items-center gap-3 mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5 text-gold-ink shrink-0"><use href="#ic-lua"/></svg><p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase">Opcional · atendimento</p></div>
           <h2 class="font-headline text-3xl md:text-4xl text-navy mb-6 leading-tight">E quando a sua equipe não está olhando?</h2>
           <p class="text-navy/70 leading-relaxed mb-5">Madrugada, feriado, domingo à tarde. A pergunta do hóspede chega exatamente no horário em que ninguém da equipe está no celular — e é aí que a reserva vai para o concorrente ou o hóspede fica sem resposta na porta.</p>
           <p class="text-navy/70 leading-relaxed">O atendimento automático cobre esse espaço lendo a mesma reserva. Responde a senha do Wi-Fi, o horário de checkout e o caminho da unidade <em>daquele</em> hóspede. Consulta disponibilidade, informa valores e conduz quem quer reservar direto com você. Quando o hóspede precisa de gente, passa a conversa para a equipe.</p>
         </div>
-        <div class="bg-white border border-surface-dim rounded-xl p-8 shadow-sm">
-          <div class="w-10 h-10 bg-surface-container rounded-full flex items-center justify-center text-navy mb-4">
-             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-          </div>
-          <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-2">Você decide quando</p>
+        <div class="bg-white border border-surface-dim rounded p-8">
+          <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-4">Você decide quando</p>
           <p class="font-headline text-xl text-navy mb-4 leading-snug">Não quer um robô falando pela sua marca? Ele fica desligado.</p>
           <p class="text-navy/65 text-sm leading-relaxed">Ou entra só para cobrir o horário em que a equipe não está. Você escolhe na implantação e muda quando quiser — o resto da jornada funciona do mesmo jeito, com ou sem ele.</p>
         </div>
       </div>
     </section>
 
-    <!-- COMO SE ENCAIXA (Com Selo Oficial da Meta) -->
+    <!-- COMO SE ENCAIXA -->
     <section class="max-w-5xl mx-auto px-6 py-20 md:py-28">
-      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
-        Como se encaixa
-      </p>
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Como se encaixa</p>
       <h2 class="font-headline text-3xl md:text-4xl text-navy mb-14 leading-tight max-w-2xl">Entra por cima do que você já usa.</h2>
-      
       <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
         <div class="border-t border-surface-dim pt-6">
-          <h3 class="font-semibold text-navy mb-2 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-            Integra ao seu PMS
-          </h3>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface-container text-gold-ink mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5"><use href="#ic-camadas"/></svg></span>
+          <h3 class="font-semibold text-navy mb-2">Integra ao seu PMS</h3>
           <p class="text-navy/65 leading-relaxed text-sm">Integração em produção com Stays, Ayrton e OwnerRez. A reserva continua nascendo onde sempre nasceu.</p>
         </div>
         <div class="border-t border-surface-dim pt-6">
-          <h3 class="font-semibold text-navy mb-2 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#25D366" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-            Seu número de WhatsApp continua seu
-          </h3>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface-container text-gold-ink mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5"><use href="#ic-celular"/></svg></span>
+          <h3 class="font-semibold text-navy mb-2">Seu número de WhatsApp continua seu</h3>
           <p class="text-navy/65 leading-relaxed text-sm">Modo coexistence: a equipe segue atendendo pelo aplicativo no celular e a automação trabalha no mesmo número.</p>
         </div>
-        
-        <!-- Selo Meta Provider Destacado -->
-        <div class="border-t border-surface-dim pt-6 bg-blue-50/30 rounded-b px-2 -mx-2">
-          <div class="inline-flex items-center gap-2 bg-[#0668E1]/10 text-[#0668E1] px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase mb-3">
-             Oficial Partner
-          </div>
-          <h3 class="font-semibold text-navy mb-2 flex items-center gap-2">
-            API oficial da Meta
-          </h3>
+        <div class="border-t border-surface-dim pt-6">
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface-container text-gold-ink mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5"><use href="#ic-selo"/></svg></span>
+          <h3 class="font-semibold text-navy mb-2">API oficial da Meta</h3>
           <p class="text-navy/65 leading-relaxed text-sm">A aLoja do Anfitrião é Tech Provider homologado pela Meta. Infraestrutura oficial, sem gambiarra de conexão e sem risco de bloqueio do número.</p>
         </div>
-        
         <div class="border-t border-surface-dim pt-6">
-          <h3 class="font-semibold text-navy mb-2 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            Montado sobre a sua rotina
-          </h3>
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-surface-container text-gold-ink mb-4"><svg viewBox="0 0 24 24" class="w-5 h-5"><use href="#ic-regua"/></svg></span>
+          <h3 class="font-semibold text-navy mb-2">Montado sobre a sua rotina</h3>
           <p class="text-navy/65 leading-relaxed text-sm">Não é software de prateleira para você configurar sozinho. A camada é implantada em cima do jeito que a sua operação já funciona.</p>
         </div>
       </div>
@@ -379,47 +355,35 @@
 
     <!-- INVESTIMENTO -->
     <section id="investimento" class="max-w-5xl mx-auto px-6 py-20 md:py-28">
-      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-        Investimento
-      </p>
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Investimento</p>
       <h2 class="font-headline text-3xl md:text-4xl text-navy mb-5 leading-tight max-w-2xl">Quanto mais unidades, mais barata fica cada uma.</h2>
       <p class="text-navy/70 max-w-2xl leading-relaxed mb-10">R$ 590 por mês até 15 unidades. Da décima sexta em diante, cada unidade entra um pouco mais barata que a anterior — sem faixas e sem degraus, para que crescer nunca signifique pular de preço.</p>
 
-      <div class="bg-white border border-surface-dim rounded-xl p-8 md:p-12 shadow-sm relative overflow-hidden">
-        <!-- Decorativo visual -->
-        <div class="absolute -right-10 -top-10 bg-surface-container rounded-full w-40 h-40 opacity-50 pointer-events-none"></div>
-
-        <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center relative z-10">
+      <div class="bg-white border border-surface-dim rounded p-8 md:p-12 shadow-sm">
+                <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
             <label for="unidades" class="block text-sm font-semibold text-navy/70 mb-3">Quantas unidades você administra?</label>
             <div class="flex items-center gap-3">
-              <input id="unidades" type="number" min="1" max="150" step="1" value="20" inputmode="numeric" class="focus:ring-2 focus:ring-gold-ink" />
+              <input id="unidades" type="number" min="1" max="150" step="1" value="20" inputmode="numeric" />
               <span class="text-sm text-navy/60">unidades sob gestão</span>
             </div>
             <input id="faixa" type="range" min="1" max="150" step="1" value="20" class="mt-6" aria-label="Número de unidades" />
             <div class="flex justify-between text-xs text-navy/40 tabular"><span>1</span><span>50</span><span>100</span><span>150</span></div>
           </div>
-          <div class="border-l-4 border-gold pl-6 py-2">
+          <div class="border-l-4 border-gold pl-6">
             <p class="text-gold-ink text-xs font-semibold tracking-widest uppercase mb-3">Mensalidade · jornada completa</p>
             <p id="valor" class="font-headline text-4xl md:text-5xl text-navy leading-none tabular">R$ 669</p>
-            <p id="porUnidade" class="text-sm text-navy/60 mt-3 tabular font-medium">R$ 33 por unidade, por mês</p>
+            <p id="porUnidade" class="text-sm text-navy/60 mt-3 tabular">R$ 33 por unidade, por mês</p>
           </div>
         </div>
 
-        <div class="mt-10 pt-8 border-t border-surface-dim grid md:grid-cols-2 gap-8 relative z-10">
+        <div class="mt-10 pt-8 border-t border-surface-dim grid md:grid-cols-2 gap-8">
           <div>
-            <p class="text-navy font-semibold text-sm mb-2 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-              Condição de fundação
-            </p>
+            <p class="text-navy font-semibold text-sm mb-2">Condição de fundação</p>
             <p class="text-navy/65 text-sm leading-relaxed">A jornada inteira — página do hóspede, portaria, limpeza e atendimento — entra no valor da camada de operação. É a condição dos primeiros clientes desta safra, e ela fica travada para quem entrar agora.</p>
           </div>
           <div>
-            <p class="text-navy font-semibold text-sm mb-2 flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              Implantação sob consulta
-            </p>
+            <p class="text-navy font-semibold text-sm mb-2">Implantação sob consulta</p>
             <p class="text-navy/65 text-sm leading-relaxed">Depende do PMS, do tamanho da operação e do que já existe montado. Definida no diagnóstico, antes de qualquer proposta.</p>
           </div>
         </div>
@@ -430,13 +394,10 @@
 
     <!-- DIFERENCIAL -->
     <section class="bg-surface-container">
-      <div class="max-w-3xl mx-auto px-6 py-20 md:py-24 text-center">
-        <div class="inline-flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-sm mb-6 text-gold-ink">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-        </div>
+      <div class="max-w-3xl mx-auto px-6 py-20 md:py-24">
         <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-6">Quem construiu</p>
-        <h2 class="font-headline text-3xl md:text-4xl text-navy mb-6 leading-tight">Catorze anos operando antes de escrever a primeira linha.</h2>
-        <div class="space-y-5 text-navy/70 leading-relaxed max-w-2xl mx-auto">
+        <h2 class="font-headline text-3xl md:text-4xl text-navy mb-6 leading-tight">14 anos operando antes de escrever a primeira linha.</h2>
+        <div class="space-y-5 text-navy/70 leading-relaxed">
           <p>A aLoja do Anfitrião nasceu de uma pousada em Maresias e de casas de temporada na praia, tocadas por 14 anos pelos mesmos dois sócios que hoje constroem o sistema. A lista montada à mão no domingo à noite, o prestador que não avisou que terminou, o hóspede que chegou antes da unidade ficar pronta — nada disso é hipótese aqui.</p>
           <p>É a diferença entre uma empresa de tecnologia que descobriu a hospitalidade e uma operação de hospitalidade que aprendeu a construir tecnologia.</p>
         </div>
@@ -447,16 +408,13 @@
     <section class="max-w-3xl mx-auto px-6 py-24 text-center">
       <h2 class="font-headline text-3xl md:text-5xl text-navy mb-6 leading-tight">Como funciona hoje a sua <span class="text-gold-ink">agenda de limpeza?</span></h2>
       <p class="text-navy/60 max-w-xl mx-auto mb-10 leading-relaxed">É por aí que a conversa começa — entendendo a sua operação antes de falar de sistema. Sem apresentação longa, sem proposta pronta.</p>
-      <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20conversar%20sobre%20a%20minha%20agenda%20de%20limpeza." target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition text-lg shadow-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-        Começar uma conversa <span aria-hidden="true" class="ml-1">→</span>
-      </a>
+      <a href="https://wa.me/5512991638478?text=Vim%20pela%20p%C3%A1gina%20de%20opera%C3%A7%C3%A3o.%20Quero%20conversar%20sobre%20a%20minha%20agenda%20de%20limpeza." target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition text-lg">Começar uma conversa <span aria-hidden="true">→</span></a>
     </section>
 
   </main>
 
   <!-- RODAPÉ ENXUTO -->
-  <footer class="bg-navy-deep text-white/60 border-t border-white/5">
+  <footer class="bg-navy-deep text-white/60">
     <div class="max-w-6xl mx-auto px-6 py-12">
       <div class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
         <div>
