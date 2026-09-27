@@ -40,8 +40,8 @@
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav bg-navy/90 border-b border-white/10">
     <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3 text-white">
-        <img src="/img/aloja-anfitriao-logo.png" alt="aLoja do Anfitrião" class="h-14 w-auto object-contain" />
-        <span class="font-headline text-lg md:text-xl tracking-tight hidden sm:block">aLoja do Anfitrião</span>
+        <img src="/img/aloja-anfitriao-simbolo.png" alt="" class="h-10 md:h-11 w-auto object-contain" />
+        <span class="font-headline text-base sm:text-lg md:text-xl tracking-tight">aLoja do Anfitrião</span>
       </a>
       <div class="hidden md:flex items-center gap-7 text-sm text-white/80">
         <a href="/" class="hover:text-gold transition-colors">Início</a>
@@ -49,11 +49,30 @@
         <a href="/mentoria" class="hover:text-gold transition-colors">Mentoria</a>
         <a href="/gestao-otas" class="hover:text-gold transition-colors">Gestão de OTAs</a>
         <a href="/presenca" class="hover:text-gold transition-colors">Presença</a>
-        <a href="/recursos" class="text-gold">Recursos</a>
+        <a href="/recursos" class="hover:text-gold transition-colors">Recursos</a>
         <a href="/sobre" class="hover:text-gold transition-colors">Sobre</a>
       </div>
-      <a href="https://wa.me/5512991638478" class="bg-gold text-navy text-sm font-semibold px-4 py-2 rounded hover:brightness-95 transition">Falar com a gente</a>
+      <div class="flex items-center gap-2">
+        <a href="https://wa.me/5512991638478" target="_blank" rel="noopener" class="hidden md:inline-block bg-gold text-navy text-sm font-semibold px-4 py-2 rounded hover:brightness-95 transition">Falar com a gente</a>
+        <button type="button" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuMobile"
+                class="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-white hover:text-gold transition-colors">
+          <svg id="menuIconeAbrir" viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg id="menuIconeFechar" viewBox="0 0 24 24" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
     </nav>
+    <div id="menuMobile" class="md:hidden hidden bg-navy border-t border-white/10 max-h-[calc(100vh-4rem)] overflow-y-auto">
+      <div class="px-6 py-2 flex flex-col text-sm">
+        <a href="/" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Início</a>
+        <a href="/anfitr-ia" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Anfitr.IA</a>
+        <a href="/mentoria" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Mentoria</a>
+        <a href="/gestao-otas" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Gestão de OTAs</a>
+        <a href="/presenca" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Presença</a>
+        <a href="/recursos" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Recursos</a>
+        <a href="/sobre" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Sobre</a>
+        <a href="https://wa.me/5512991638478" target="_blank" rel="noopener" class="my-4 bg-gold text-navy text-center font-semibold px-4 py-3 rounded hover:brightness-95 transition">Falar com a gente</a>
+      </div>
+    </div>
   </header>
 
   <main class="pt-16">
@@ -133,7 +152,7 @@
       <div class="max-w-3xl mx-auto px-6 py-20 text-center">
         <h2 class="font-headline text-3xl md:text-4xl mb-6 leading-tight">Leu, identificou, quer resolver?</h2>
         <p class="text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">Manda uma mensagem. A gente entende o tamanho da sua operação e indica o próximo passo certo — sem apresentação longa.</p>
-        <a href="https://wa.me/5512991638478?text=Ol%C3%A1%21%20Li%20os%20artigos%20e%20quero%20entender%20o%20pr%C3%B3ximo%20passo%20para%20minha%20opera%C3%A7%C3%A3o" class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition text-lg">Falar no WhatsApp <span aria-hidden="true">→</span></a>
+        <a href="https://wa.me/5512991638478?text=Ol%C3%A1%21%20Li%20os%20artigos%20e%20quero%20entender%20o%20pr%C3%B3ximo%20passo%20para%20minha%20opera%C3%A7%C3%A3o" class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition text-lg" target="_blank" rel="noopener">Falar no WhatsApp <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>
@@ -143,7 +162,7 @@
       <div class="grid md:grid-cols-4 gap-10 mb-10">
         <div class="md:col-span-2">
           <div class="flex items-center gap-3 mb-3">
-            <img src="/img/aloja-anfitriao-logo.png" alt="aLoja do Anfitrião" class="h-10 w-auto object-contain" />
+            <img src="/img/aloja-anfitriao-simbolo.png" alt="aLoja do Anfitrião" class="h-10 w-auto object-contain" />
             <span class="font-headline text-lg text-white">aLoja do Anfitrião</span>
           </div>
           <p class="text-sm max-w-sm leading-relaxed">Automação, mentoria e gestão de OTAs construídos por anfitriões, para anfitriões.</p>
@@ -192,5 +211,28 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Menu no celular
+    (function () {
+      var btn = document.getElementById('menuBtn');
+      var painel = document.getElementById('menuMobile');
+      var abrir = document.getElementById('menuIconeAbrir');
+      var fechar = document.getElementById('menuIconeFechar');
+      if (!btn || !painel) return;
+      function alterna(mostrar) {
+        painel.classList.toggle('hidden', !mostrar);
+        abrir.classList.toggle('hidden', mostrar);
+        fechar.classList.toggle('hidden', !mostrar);
+        btn.setAttribute('aria-expanded', mostrar ? 'true' : 'false');
+        btn.setAttribute('aria-label', mostrar ? 'Fechar menu' : 'Abrir menu');
+      }
+      btn.addEventListener('click', function () { alterna(painel.classList.contains('hidden')); });
+      painel.addEventListener('click', function (e) { if (e.target.tagName === 'A') alterna(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') alterna(false); });
+      window.addEventListener('resize', function () { if (window.innerWidth >= 768) alterna(false); });
+    })();
+  </script>
+
 </body>
 </html>
