@@ -7,3 +7,10 @@
 /anfitr-ia/limpeza           /anfitr-ia-limpeza.html           200
 /anfitr-ia/atendimento       /anfitr-ia-atendimento.html       200
 /anfitr-ia/jornadahospede    /anfitr-ia-jornadahospede.html    200
+
+# vitrine.html aposentada: o conceito virou o Pacote Presença (Google +
+# vitrine + atendimento automático). Redirect 301 para não deixar link
+# antigo ou bookmark batendo em 404, e para não indexar conteúdo
+# quase-duplicado.
+/vitrine.html                /presenca                         301
+/vitrine                     /presenca                         301
