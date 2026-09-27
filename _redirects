@@ -1,3 +1,9 @@
 # Netlify Redirects — a Loja do Anfitrião
 # OAuth callback é servido como página estática em /oauth/callback.html
 # Deauthorize callback vai direto pro n8n (.cloud) — não precisa de redirect aqui
+
+# Páginas Anfitr.IA: a URL canônica e o sitemap usam /anfitr-ia/<sub>,
+# mas os arquivos estão na raiz com hífen. Rewrite 200 mantém a URL.
+/anfitr-ia/limpeza           /anfitr-ia-limpeza.html           200
+/anfitr-ia/atendimento       /anfitr-ia-atendimento.html       200
+/anfitr-ia/jornadahospede    /anfitr-ia-jornadahospede.html    200
