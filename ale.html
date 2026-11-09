@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexandre Tozetto | Arquiteto de automação e inteligência artificial</title>
+  <meta name="description" content="Alexandre Tozetto constrói agentes de IA que atendem no WhatsApp e no Instagram de negócios que vivem de agenda: salões, clínicas, veterinárias, estúdios, imobiliárias e oficinas." />
+  <link rel="icon" href="/img/favicon.ico" />
+  <link rel="canonical" href="https://alojadoanfitriao.com.br/ale" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Alexandre Tozetto | Arquiteto de automação e inteligência artificial" />
+  <meta property="og:description" content="Um funcionário de IA que não dorme, não esquece e não perde cliente." />
+  <meta property="og:image" content="https://alojadoanfitriao.com.br/img/og-image.png" />
+  <meta property="og:url" content="https://alojadoanfitriao.com.br/ale" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;700;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { navy:'hsl(213,100%,12%)','navy-deep':'hsl(213,100%,4%)',gold:'hsl(45,99%,67%)','gold-ink':'hsl(40,100%,23%)',surface:'hsl(210,20%,98%)','surface-dim':'hsl(210,10%,86%)','surface-container':'hsl(210,14%,93%)' },
+      fontFamily: { headline:['Noto Serif','serif'], body:['Manrope','sans-serif'] },
+      borderRadius: { DEFAULT:'0.125rem' },
+    }}};
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{font-family:'Manrope',sans-serif;background-color:hsl(210,20%,98%);color:hsl(213,100%,12%)}
+    .font-headline{font-family:'Noto Serif',serif}
+    .glass-nav{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .animate-fade-in-up{animation:fadeInUp .8s ease-out forwards}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TY6H203JJW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TY6H203JJW');
+  </script>
+</head>
+<body class="font-body antialiased">
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav bg-navy/90 border-b border-white/10">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 text-white">
+        <img src="/img/aloja-anfitriao-simbolo.png" alt="" class="h-10 md:h-11 w-auto object-contain" />
+        <span class="font-headline text-base sm:text-lg md:text-xl tracking-tight">aLoja do Anfitrião</span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm text-white/80">
+        <a href="/" class="hover:text-gold transition-colors">Início</a>
+        <a href="/anfitr-ia" class="hover:text-gold transition-colors">Anfitr.IA</a>
+        <a href="/mentoria" class="hover:text-gold transition-colors">Mentoria</a>
+        <a href="/gestao-otas" class="hover:text-gold transition-colors">Gestão de OTAs</a>
+        <a href="/presenca" class="hover:text-gold transition-colors">Presença</a>
+        <a href="/recursos" class="hover:text-gold transition-colors">Recursos</a>
+        <a href="/sobre" class="hover:text-gold transition-colors">Sobre</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://wa.me/5512991638478?text=Ol%C3%A1%21%20Quero%20falar%20com%20a%20equipe" target="_blank" rel="noopener" class="hidden md:inline-block bg-gold text-navy text-sm font-semibold px-4 py-2 rounded hover:brightness-95 transition">Falar com a gente</a>
+        <button type="button" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menuMobile"
+                class="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-white hover:text-gold transition-colors">
+          <svg id="menuIconeAbrir" viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg id="menuIconeFechar" viewBox="0 0 24 24" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div id="menuMobile" class="md:hidden hidden bg-navy border-t border-white/10 max-h-[calc(100vh-4rem)] overflow-y-auto">
+      <div class="px-6 py-2 flex flex-col text-sm">
+        <a href="/" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Início</a>
+        <a href="/anfitr-ia" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Anfitr.IA</a>
+        <a href="/mentoria" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Mentoria</a>
+        <a href="/gestao-otas" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Gestão de OTAs</a>
+        <a href="/presenca" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Presença</a>
+        <a href="/recursos" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Recursos</a>
+        <a href="/sobre" class="py-3 border-b border-white/10 text-white/85 hover:text-gold transition-colors">Sobre</a>
+        <a href="https://wa.me/5512991638478?text=Ol%C3%A1%21%20Quero%20falar%20com%20a%20equipe" target="_blank" rel="noopener" class="my-4 bg-gold text-navy text-center font-semibold px-4 py-3 rounded hover:brightness-95 transition">Falar com a gente</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <section class="bg-navy text-white">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-[1fr_320px] gap-12 items-center">
+        <div>
+          <p class="text-gold text-sm font-semibold tracking-[0.2em] uppercase mb-6 animate-fade-in-up">Agentes de IA · automação de atendimento</p>
+          <h1 class="font-headline text-4xl md:text-6xl leading-[1.1] mb-8 animate-fade-in-up" style="animation-delay:.1s;opacity:0">Um funcionário que não dorme, não esquece e <span class="text-gold">não perde cliente.</span></h1>
+          <p class="text-xl text-white font-semibold animate-fade-in-up" style="animation-delay:.2s;opacity:0">Alexandre Tozetto</p>
+          <p class="text-lg text-white/70 animate-fade-in-up" style="animation-delay:.2s;opacity:0">Arquiteto de automação e inteligência artificial</p>
+        </div>
+        <img src="/img/alexandre-tozetto-arquiteto-automacao-ia.jpg" alt="Alexandre Tozetto" width="320" height="320" class="rounded w-64 h-64 md:w-80 md:h-80 object-cover mx-auto" />
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-20 md:py-24">
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">O que eu construo</p>
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-10 leading-tight">Funcionários de IA para quem vive de WhatsApp e Instagram.</h2>
+      <div class="grid md:grid-cols-2 gap-5 mb-12">
+        <div class="bg-white rounded p-7"><h3 class="font-headline text-xl text-navy mb-2">Atende 24 horas</h3><p class="text-navy/70 leading-relaxed">Responde dúvidas, preços e horários no WhatsApp e no Instagram do negócio, de dia, de noite e no feriado.</p></div><div class="bg-white rounded p-7"><h3 class="font-headline text-xl text-navy mb-2">Agenda no seu sistema</h3><p class="text-navy/70 leading-relaxed">Consulta horários e marca no sistema que o negócio já usa.</p></div><div class="bg-white rounded p-7"><h3 class="font-headline text-xl text-navy mb-2">Confirma e lembra</h3><p class="text-navy/70 leading-relaxed">Confirmação na véspera e lembrete no dia, para a agenda não ficar com buraco.</p></div><div class="bg-white rounded p-7"><h3 class="font-headline text-xl text-navy mb-2">Traz o cliente de volta</h3><p class="text-navy/70 leading-relaxed">Aniversários e convites para quem sumiu, com botão para agendar.</p></div>
+      </div>
+      <p class="text-navy/60 mb-4">Para negócios como:</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="bg-white border border-surface-dim rounded-full px-4 py-2 text-sm text-navy">Salão e barbearia</span><span class="bg-white border border-surface-dim rounded-full px-4 py-2 text-sm text-navy">Estética e odontologia</span><span class="bg-white border border-surface-dim rounded-full px-4 py-2 text-sm text-navy">Veterinária e pet shop</span><span class="bg-white border border-surface-dim rounded-full px-4 py-2 text-sm text-navy">Estúdios e academias</span><span class="bg-white border border-surface-dim rounded-full px-4 py-2 text-sm text-navy">Imobiliárias</span><span class="bg-white border border-surface-dim rounded-full px-4 py-2 text-sm text-navy">Oficinas e autocentros</span><span class="bg-white border border-surface-dim rounded-full px-4 py-2 text-sm text-navy">Pousadas e hotéis</span>
+      </div>
+    </section>
+
+    <section class="bg-surface-container">
+      <div class="max-w-5xl mx-auto px-6 py-20 md:py-24">
+        <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Como funciona</p>
+        <h2 class="font-headline text-3xl md:text-4xl text-navy mb-10 leading-tight">Ligado ao que o negócio já usa.</h2>
+        <ol class="grid md:grid-cols-4 gap-5 mb-8">
+          <li class="bg-white rounded p-6"><span class="font-headline text-3xl text-gold-ink">1</span><h3 class="font-semibold text-navy mt-2 mb-1">Cliente</h3><p class="text-navy/70 text-sm leading-relaxed">Manda mensagem no WhatsApp ou no Instagram do negócio.</p></li><li class="bg-white rounded p-6"><span class="font-headline text-3xl text-gold-ink">2</span><h3 class="font-semibold text-navy mt-2 mb-1">Agente de IA</h3><p class="text-navy/70 text-sm leading-relaxed">Entende, responde e decide o próximo passo.</p></li><li class="bg-white rounded p-6"><span class="font-headline text-3xl text-gold-ink">3</span><h3 class="font-semibold text-navy mt-2 mb-1">Sistema do negócio</h3><p class="text-navy/70 text-sm leading-relaxed">Agenda, cadastro ou planilha: o agente consulta e registra.</p></li><li class="bg-white rounded p-6"><span class="font-headline text-3xl text-gold-ink">4</span><h3 class="font-semibold text-navy mt-2 mb-1">Equipe</h3><p class="text-navy/70 text-sm leading-relaxed">Assume quando precisa, com todo o histórico da conversa.</p></li>
+        </ol>
+        <p class="text-navy/70">WhatsApp e Instagram pelas APIs oficiais da Meta, nas mesmas contas do negócio. O app do WhatsApp continua no celular da equipe.</p>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-20 md:py-24">
+      <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Em produção hoje</p>
+      <h2 class="font-headline text-3xl md:text-4xl text-navy mb-10 leading-tight">Agentes que já atendem gente de verdade.</h2>
+      <div class="grid md:grid-cols-2 gap-5 mb-8">
+        <div class="bg-white rounded p-7"><p class="text-gold-ink text-sm font-semibold mb-1">Hospedagem · 129 unidades</p><h3 class="font-headline text-xl text-navy mb-2">ZainaLofts7</h3><p class="text-navy/70 leading-relaxed">Agente que atende os hóspedes, integrado ao sistema de gestão.</p></div><div class="bg-white rounded p-7"><p class="text-gold-ink text-sm font-semibold mb-1">Hospedagem · 63 unidades</p><h3 class="font-headline text-xl text-navy mb-2">Da Capital ao Litoral</h3><p class="text-navy/70 leading-relaxed">Atendimento e toda a jornada, da reserva à manutenção.</p></div><div class="bg-white rounded p-7"><p class="text-gold-ink text-sm font-semibold mb-1">Hospedagem</p><h3 class="font-headline text-xl text-navy mb-2">Okaeri</h3><p class="text-navy/70 leading-relaxed">Site com reserva direta, Google, redes e atendimento com IA.</p></div><div class="bg-white rounded p-7"><p class="text-gold-ink text-sm font-semibold mb-1">Nossa própria empresa</p><h3 class="font-headline text-xl text-navy mb-2">IAra</h3><p class="text-navy/70 leading-relaxed">O atendimento comercial da aLoja do Anfitrião é feito por IA, todos os dias.</p></div>
+      </div>
+      <div class="bg-navy text-white rounded p-8">
+        <h3 class="font-headline text-2xl mb-2">Veja funcionando antes de decidir.</h3>
+        <p class="text-white/70">Mostro um agente de demonstração do seu nicho, ao vivo, conversando pelo WhatsApp.</p>
+      </div>
+    </section>
+
+    <section class="bg-surface-container">
+      <div class="max-w-3xl mx-auto px-6 py-20 md:py-24">
+        <p class="text-gold-ink text-sm font-semibold tracking-[0.2em] uppercase mb-4">Quem sou</p>
+        <h2 class="font-headline text-3xl md:text-4xl text-navy mb-10 leading-tight">Atendi cliente antes de automatizar atendimento.</h2>
+        <ol class="space-y-6 mb-12">
+          <li class="flex gap-5"><span class="font-headline text-3xl text-gold-ink w-8 shrink-0">1</span><div><h3 class="font-semibold text-navy text-lg">Tecnologia</h3><p class="text-navy/70 leading-relaxed">Comecei na área de TI: sistemas, dados e processos.</p></div></li><li class="flex gap-5"><span class="font-headline text-3xl text-gold-ink w-8 shrink-0">2</span><div><h3 class="font-semibold text-navy text-lg">Do outro lado do balcão</h3><p class="text-navy/70 leading-relaxed">Por 14 anos fui dono de um negócio que vivia de atender bem: recepção, reserva e cliente na porta.</p></div></li><li class="flex gap-5"><span class="font-headline text-3xl text-gold-ink w-8 shrink-0">3</span><div><h3 class="font-semibold text-navy text-lg">As duas juntas</h3><p class="text-navy/70 leading-relaxed">Hoje construo IA que atende como um bom recepcionista atenderia.</p></div></li>
+        </ol>
+        <h3 class="font-headline text-2xl text-navy mb-4">Como trabalho</h3>
+        <ul class="list-disc pl-6 space-y-2 text-navy/75">
+          <li>Começamos por um piloto, pequeno e medido.</li><li>WhatsApp e Instagram pelas APIs oficiais da Meta, sem risco para o seu número.</li><li>Você fala direto comigo, não com um suporte genérico.</li>
+        </ul>
+        <p class="text-navy/60 mt-8 text-sm">Sou co-fundador da <a href="/sobre" class="underline hover:text-gold-ink">aLoja do Anfitrião</a>, onde cuido da tecnologia para pousadas, hotéis e anfitriões.</p>
+      </div>
+    </section>
+
+    <section class="bg-navy text-white">
+      <div class="max-w-3xl mx-auto px-6 py-24 text-center">
+        <h2 class="font-headline text-3xl md:text-5xl mb-8 leading-tight">Quer ver um agente <span class="text-gold">no seu negócio?</span></h2>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://www.linkedin.com/in/aletozetto/" class="inline-flex items-center gap-2 bg-gold text-navy font-semibold px-8 py-4 rounded hover:brightness-95 transition text-lg" target="_blank" rel="noopener">Falar comigo no LinkedIn <span aria-hidden="true">→</span></a>
+          <a href="#" data-u="aletozetto" data-d="gmail.com" class="js-email inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-8 py-4 rounded hover:border-gold hover:text-gold transition text-lg">Enviar e-mail</a>
+        </div>
+        <script>
+          document.querySelectorAll('.js-email').forEach(function (a) {
+            a.addEventListener('click', function (e) {
+              e.preventDefault();
+              window.location.href = 'mailto:' + a.dataset.u + '@' + a.dataset.d + '?subject=' + encodeURIComponent('Agente de IA para o meu negócio');
+            });
+          });
+        </script>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-navy-deep text-white/60">
+    <div class="max-w-6xl mx-auto px-6 py-14">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="/img/aloja-anfitriao-simbolo.png" alt="aLoja do Anfitrião" class="h-10 w-auto object-contain" />
+            <span class="font-headline text-lg text-white">aLoja do Anfitrião</span>
+          </div>
+          <p class="text-sm max-w-sm leading-relaxed">Automação, mentoria e gestão de OTAs construídos por anfitriões, para anfitriões.</p>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm mb-4">Anfitr.IA</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/anfitr-ia/atendimento" class="hover:text-gold transition">Atendimento</a></li>
+            <li><a href="/anfitr-ia/jornadahospede" class="hover:text-gold transition">Jornada do Hóspede</a></li>
+            <li><a href="/anfitr-ia/limpeza" class="hover:text-gold transition">Limpeza e Tarefas</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-white font-semibold text-sm mb-4">Empresa</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/mentoria" class="hover:text-gold transition">Mentoria</a></li>
+            <li><a href="/gestao-otas" class="hover:text-gold transition">Gestão de OTAs</a></li>
+            <li><a href="/presenca" class="hover:text-gold transition">Presença</a></li>
+            <li><a href="/recursos" class="hover:text-gold transition">Recursos</a></li>
+            <li><a href="/sobre" class="hover:text-gold transition">Sobre</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div class="text-xs text-white/40 flex flex-col gap-1">
+          <p>© 2026 aLoja do Anfitrião · CNPJ 66.215.844/0001-68</p>
+          <p>São Sebastião · SP · Atendemos todo o Brasil</p>
+        </div>
+        <div class="flex items-center gap-5">
+            <a href="https://share.google/7Wy6IX37S20AuocW4" target="_blank" rel="noopener" aria-label="Google Meu Negócio" class="text-white/40 hover:text-gold transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8h9.16c.09.5.14 1.02.14 1.56C21.3 17.52 17.4 21 12 21A9 9 0 1 1 12 3c2.44 0 4.62.92 6.28 2.44l-2.57 2.5A5.5 5.5 0 0 0 12 6.5a5.5 5.5 0 1 0 3.88 9.45H12v-5.15z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/alojadoanfitriao" target="_blank" rel="noopener" aria-label="Instagram" class="text-white/40 hover:text-gold transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://www.facebook.com/alojadoanfitriao" target="_blank" rel="noopener" aria-label="Facebook" class="text-white/40 hover:text-gold transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/aletozetto/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-white/40 hover:text-gold transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@alojadoanfitriao" target="_blank" rel="noopener" aria-label="YouTube" class="text-white/40 hover:text-gold transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+            </a>
+          </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Menu no celular
+    (function () {
+      var btn = document.getElementById('menuBtn');
+      var painel = document.getElementById('menuMobile');
+      var abrir = document.getElementById('menuIconeAbrir');
+      var fechar = document.getElementById('menuIconeFechar');
+      if (!btn || !painel) return;
+      function alterna(mostrar) {
+        painel.classList.toggle('hidden', !mostrar);
+        abrir.classList.toggle('hidden', mostrar);
+        fechar.classList.toggle('hidden', !mostrar);
+        btn.setAttribute('aria-expanded', mostrar ? 'true' : 'false');
+        btn.setAttribute('aria-label', mostrar ? 'Fechar menu' : 'Abrir menu');
+      }
+      btn.addEventListener('click', function () { alterna(painel.classList.contains('hidden')); });
+      painel.addEventListener('click', function (e) { if (e.target.tagName === 'A') alterna(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') alterna(false); });
+      window.addEventListener('resize', function () { if (window.innerWidth >= 768) alterna(false); });
+    })();
+  </script>
+
+</body>
+</html>
